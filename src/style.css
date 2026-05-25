@@ -26,16 +26,20 @@ h1{font-size:72px;line-height:.92;letter-spacing:-.055em;margin:0;color:var(--bl
 .journeyArt{margin:34px 0 30px;height:178px;border:1px solid var(--border);background:linear-gradient(180deg,#fff,#f8fbff);display:flex;align-items:center;justify-content:space-around;font-size:58px;position:relative;overflow:hidden}
 .journeyArt:before{content:"";position:absolute;left:7%;right:7%;top:55%;border-top:3px dashed rgba(18,59,99,.25)}
 .journeyArt span{position:relative;background:white;padding:8px;border-radius:999px}
-.progressPanel{margin-top:6px}
-.progressPanel h2{font-size:34px;line-height:1.15;margin:0;color:var(--blue)}
-.progressPanel p{color:var(--muted);margin:8px 0 0}
-.progressLine{position:relative;margin:28px 0 58px;height:22px;background:#dbe4ef}
-.fill{height:100%;background:var(--blue);box-shadow:0 0 16px rgba(18,59,99,.32)}
-.milestone{position:absolute;top:50%;transform:translate(-50%,-50%);text-align:center}
-.pin{display:block;width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid #fff;box-shadow:0 2px 10px rgba(15,47,80,.2)}
-.pin.done{background:var(--blue)}
-.milestone small{display:block;margin-top:14px;background:white;border:1px solid #edf2f7;padding:5px 10px;font-size:11px;color:var(--muted);font-weight:800;white-space:nowrap}
-.checkpointStrip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.progressPanel.clean{background:#fbfdff;border:1px solid var(--border);padding:24px;margin-top:28px}
+.progressHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.progressHeader h2{font-size:32px;line-height:1.15;margin:0;color:var(--blue)}
+.progressHeader p{color:var(--muted);margin:8px 0 0}
+.progressBadge{flex:0 0 auto;background:var(--blue);color:white;font-size:28px;font-weight:900;padding:14px 18px}
+.progressLine.cleanBar{position:relative;margin:26px 0 12px;height:28px;background:#dbe4ef;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,var(--blue),#1e5d91);box-shadow:0 0 16px rgba(18,59,99,.32)}
+.progressMeta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
+.progressMeta strong{color:var(--blue);font-size:16px}
+.nextInline{display:flex;justify-content:space-between;align-items:center;gap:24px;border:1px solid rgba(18,59,99,.18);background:var(--light);padding:18px 20px;margin-top:18px}
+.nextInline p{margin:0 0 5px;color:var(--muted);font-size:14px}
+.nextInline h3{margin:0;color:var(--blue);font-size:22px}
+.nextInline strong{color:var(--blue);white-space:nowrap}
+.checkpointStrip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px}
 .miniCheckpoint{border:1px solid #edf2f7;background:white;min-height:112px;padding:16px;color:#64748b}
 .miniCheckpoint.done{background:var(--light);border-color:rgba(18,59,99,.18);color:var(--blue)}
 .miniCheckpoint.mystery{display:flex;align-items:center;justify-content:center;background:#f8fafc;color:#cbd5e1}
@@ -84,12 +88,13 @@ textarea{width:100%;height:120px;border:1px solid var(--border);padding:12px;fon
   .checkpointStrip{grid-template-columns:repeat(2,1fr)}
   .journeyArt{font-size:42px;height:130px}
   .stepsGrid{grid-template-columns:1fr}
+  .progressHeader{flex-direction:column}
 }
 @media(max-width:640px){
   .topbar{align-items:flex-start;gap:16px;flex-direction:column}
   h1{font-size:40px}
-  .progressPanel h2{font-size:26px}
+  .progressHeader h2{font-size:26px}
   .checkpointStrip{grid-template-columns:1fr}
-  .heroActions{flex-direction:column}
+  .heroActions,.nextInline{flex-direction:column;align-items:flex-start}
   .summaryGrid{grid-template-columns:1fr}
 }

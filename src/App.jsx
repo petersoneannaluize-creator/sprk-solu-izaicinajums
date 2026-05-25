@@ -42,7 +42,6 @@ export default function App(){
   const progress = Math.round((currentSteps / GOAL) * 100);
   const next = checkpoints.find(c => c.steps > currentSteps) || checkpoints[checkpoints.length - 1];
   const reached = checkpoints.filter(c => c.steps <= currentSteps).length;
-  const visibleCheckpoints = checkpoints.filter(c => c.steps <= next.steps);
   const embedCode = `<iframe src="https://tava-lapa.lv/progress" width="100%" height="260" style="border:0;" title="Regulatora soļu izaicinājuma progress"></iframe>`;
 
   return (
@@ -78,20 +77,32 @@ export default function App(){
             <span>🌍</span>
           </div>
 
-          <div className="progressPanel">
-            <div>
-              <h2>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</h2>
-              <p>Mērķis: {format(GOAL)} soļu · {progress}% sasniegti</p>
+          <div className="progressPanel clean">
+            <div className="progressHeader">
+              <div>
+                <h2>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</h2>
+                <p>No kopējā mērķa — {format(GOAL)} soļiem</p>
+              </div>
+              <div className="progressBadge">{progress}%</div>
             </div>
-            <div className="progressLine">
+
+            <div className="progressLine cleanBar">
               <div className="fill" style={{width: `${progress}%`}} />
-              {visibleCheckpoints.map((c, i) => (
-                <div className="milestone" key={i} style={{left: `${(c.steps / GOAL) * 100}%`}}>
-                  <span className={c.steps <= currentSteps ? "pin done" : "pin"}></span>
-                  <small>{format(c.steps)}</small>
-                </div>
-              ))}
             </div>
+
+            <div className="progressMeta">
+              <span>0</span>
+              <strong>{format(currentSteps)} / {format(GOAL)} soļu</strong>
+              <span>{format(GOAL)}</span>
+            </div>
+          </div>
+
+          <div className="nextInline">
+            <div>
+              <p>Nākamais sasniedzamais mērķis</p>
+              <h3>{next.icon} {next.title}</h3>
+            </div>
+            <strong>Vēl {format(next.steps - currentSteps)} soļi</strong>
           </div>
 
           <div className="checkpointStrip">
