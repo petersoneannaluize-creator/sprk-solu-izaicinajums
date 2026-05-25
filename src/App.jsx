@@ -67,7 +67,7 @@ export default function App(){
             </p>
           </div>
 
-          <div <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
+          <div> <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
           </div>
 
           <div className="progressPanel clean">
