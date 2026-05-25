@@ -49,7 +49,7 @@ export default function App(){
       <div className="page">
         <nav className="topbar">
          <div className="brand">
-  <img src="/src/sprk25-logo.png" alt="SPRK 25" className="sprk-logo" />
+ <img src="./sprk25-logo.png" alt="SPRK 25" className="sprk-logo" />
 </div>
           <a className="button" href={submitFormUrl} target="_blank">Iesniegt soļus</a>
         </nav>
