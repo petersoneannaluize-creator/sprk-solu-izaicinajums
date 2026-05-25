@@ -2,6 +2,7 @@
 import React from "react";
 import "./style.css";
 import sprkLogo from "./sprk25-logo.png";
+import journeyImage from "./sprk-celojums.png";
 const GOAL = 25000000;
 const currentSteps = 7842160;
 const submitFormUrl = "https://forms.office.com/";
@@ -59,20 +60,14 @@ export default function App(){
             <p className="eyebrow">25 gadi · 25 miljoni soļu</p>
             <h1>Regulatora soļu izaicinājums</h1>
             <p className="lead">
-              🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam — jubilejas gada laikā kopā noiet 25 miljonus soļu! 👣
+              🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā  kopā noiet 25 miljonus soļu! 👣
             </p>
             <p className="lead smaller">
               25 miljoni izklausās daudz, bet, ja piedalās ap 50 kolēģu, katram gada laikā vidēji jānoiet ap 500 000 soļu — aptuveni 10 000 soļu nedēļā.
             </p>
           </div>
 
-          <div className="journeyArt" aria-label="Ceļojuma ilustrācija">
-            <span>🏜️</span>
-            <span>🌊</span>
-            <span>⛰️</span>
-            <span>🗼</span>
-            <span>🧱</span>
-            <span>🌍</span>
+          <div <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
           </div>
 
           <div className="progressPanel clean">
