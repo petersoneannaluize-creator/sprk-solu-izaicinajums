@@ -1,7 +1,7 @@
 
 import React from "react";
 import "./style.css";
-
+import sprkLogo from "./sprk25-logo.png";
 const GOAL = 25000000;
 const currentSteps = 7842160;
 const submitFormUrl = "https://forms.office.com/";
@@ -49,7 +49,7 @@ export default function App(){
       <div className="page">
         <nav className="topbar">
          <div className="brand">
- <img src="./sprk25-logo.png" alt="SPRK 25" className="sprk-logo" />
+<img src={sprkLogo} alt="SPRK 25" className="sprk-logo" />
 </div>
           <a className="button" href={submitFormUrl} target="_blank">Iesniegt soļus</a>
         </nav>
