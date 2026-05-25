@@ -14,7 +14,7 @@ const checkpoints = [
   { steps: 2000000, icon: "🐚", title: "Noiets Camino de Santiago" },
   { steps: 3000000, icon: "🧱", title: "Noiets Ķīnas mūris" },
   { steps: 7000000, icon: "⚓", title: "Apiets apkārt Baltijas jūrai" },
-  { steps: 12000000, icon: "🇪🇺", title: "Apiets apkārt Eiropi" },
+  { steps: 12000000, icon: "🇪🇺", title: "Apiets apkārt Eiropai" },
   { steps: 15000000, icon: "🏜️", title: "Noieta Nīla visā tās garumā" },
   { steps: 20000000, icon: "🏔️", title: "Šķērsota Eirāzija" },
   { steps: 25000000, icon: "🌍", title: "Nostaigāta gandrīz puse pasaules" },
