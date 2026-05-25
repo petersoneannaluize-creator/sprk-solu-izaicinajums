@@ -8,14 +8,14 @@ const currentSteps = 7842160;
 const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
-  { steps: 50000, icon: "🚶", title: "Pirmais jubilejas starts" },
-  { steps: 500000, icon: "🇱🇻", title: "Apieta apkārt Latvija" },
-  { steps: 1000000, icon: "🌊", title: "Noieta Daugava" },
+  { steps: 50000, icon: "🚶", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
+  { steps: 500000, icon: "🇱🇻", title: "Apiets apkārt Latvijai" },
+  { steps: 1000000, icon: "🌊", title: "Noieta Daugava visā tās garumā" },
   { steps: 2000000, icon: "🐚", title: "Noiets Camino de Santiago" },
   { steps: 3000000, icon: "🧱", title: "Noiets Ķīnas mūris" },
-  { steps: 7000000, icon: "⚓", title: "Apieta apkārt Baltijas jūra" },
-  { steps: 12000000, icon: "🇪🇺", title: "Apieta apkārt Eiropa" },
-  { steps: 15000000, icon: "🏜️", title: "Noieta Nīla" },
+  { steps: 7000000, icon: "⚓", title: "Apiets apkārt Baltijas jūrai" },
+  { steps: 12000000, icon: "🇪🇺", title: "Apiets apkārt Eiropi" },
+  { steps: 15000000, icon: "🏜️", title: "Noieta Nīla visā tās garumā" },
   { steps: 20000000, icon: "🏔️", title: "Šķērsota Eirāzija" },
   { steps: 25000000, icon: "🌍", title: "Nostaigāta gandrīz puse pasaules" },
 ];
@@ -60,10 +60,10 @@ export default function App(){
             <p className="eyebrow">25 gadi · 25 miljoni soļu</p>
             <h1>Regulatora soļu izaicinājums</h1>
             <p className="lead">
-              🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā  kopā noiet 25 miljonus soļu! 👣
+              🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam un mūsu jubilejas gadā kopā noiet 25 miljonus soļu! 👣
             </p>
             <p className="lead smaller">
-              25 miljoni izklausās daudz, bet, ja piedalās ap 50 kolēģu, katram gada laikā vidēji jānoiet ap 500 000 soļu — aptuveni 10 000 soļu nedēļā.
+              Soļus jāiesniedz svētdienā, lai mūsu Komunikācijas speciāliste Anna pirmdienās var informāciju atjaunot. Jo vairāk piedalāmies, jo vairāk soļi noieti kopā!
             </p>
           </div>
 
