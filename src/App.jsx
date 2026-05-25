@@ -48,108 +48,143 @@ export default function App(){
   return (
     <main>
       <div className="page">
-        <nav>
+        <nav className="topbar">
           <div className="brand">
-            <div className="logoBox">SPRK</div>
-            <div className="logoBox big">25</div>
-            <strong>Regulatora jubilejas izaicinājums</strong>
+            <div className="mark">SPRK</div>
+            <div className="anniversary">25</div>
+            <span>Regulatora jubilejas izaicinājums</span>
           </div>
           <a className="button" href={submitFormUrl} target="_blank">Iesniegt soļus</a>
         </nav>
 
-        <section className="heroGrid">
-          <div className="card hero">
+        <section className="heroShell">
+          <div className="heroText">
             <p className="eyebrow">25 gadi · 25 miljoni soļu</p>
             <h1>Regulatora soļu izaicinājums</h1>
-            <p className="intro">
+            <p className="lead">
               🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam — jubilejas gada laikā kopā noiet 25 miljonus soļu! 👣
-              <br/><br/>
-              25 miljoni izklausās daudz, bet, ja piedalās ap 50 kolēģu, katram gada laikā vidēji jānoiet ap 500 000 soļu — aptuveni 10 000 soļu nedēļā. Soli pa solim tas sakrājas daudz ātrāk, nekā šķiet.
             </p>
+            <p className="lead smaller">
+              25 miljoni izklausās daudz, bet, ja piedalās ap 50 kolēģu, katram gada laikā vidēji jānoiet ap 500 000 soļu — aptuveni 10 000 soļu nedēļā.
+            </p>
+          </div>
 
-            <div className="illustration">
-              <span>🏜️</span><span>🌊</span><span>⛰️</span><span>🗼</span><span>🧱</span><span>🌍</span>
-            </div>
+          <div className="journeyArt" aria-label="Ceļojuma ilustrācija">
+            <span>🏜️</span>
+            <span>🌊</span>
+            <span>⛰️</span>
+            <span>🗼</span>
+            <span>🧱</span>
+            <span>🌍</span>
+          </div>
 
-            <div className="current">
+          <div className="progressPanel">
+            <div>
               <h2>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</h2>
               <p>Mērķis: {format(GOAL)} soļu · {progress}% sasniegti</p>
             </div>
-
-            <div className="progressWrap">
-              <div className="progress"><div style={{width: `${progress}%`}} /></div>
+            <div className="progressLine">
+              <div className="fill" style={{width: `${progress}%`}} />
               {visibleCheckpoints.map((c, i) => (
-                <div className="marker" key={i} style={{left: `${(c.steps/GOAL)*100}%`}}>
-                  <span className={c.steps <= currentSteps ? "dot done" : "dot"}></span>
+                <div className="milestone" key={i} style={{left: `${(c.steps / GOAL) * 100}%`}}>
+                  <span className={c.steps <= currentSteps ? "pin done" : "pin"}></span>
                   <small>{format(c.steps)}</small>
                 </div>
               ))}
             </div>
-
-            <div className="checkpointGrid">
-              {checkpoints.map(c => {
-                const upcoming = c.steps > next.steps;
-                const done = c.steps <= currentSteps;
-                return (
-                  <div className={`checkpoint ${done ? "done" : ""} ${upcoming ? "hiddenCp" : ""}`} key={c.steps}>
-                    {upcoming ? <b className="question">?</b> : <><span>{c.icon}</span><b>{format(c.steps)} soļu</b><p>{c.title}</p></>}
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className="notice">
-              <b>Soļu progress tiek atjaunots reizi nedēļā — pirmdienās</b>
-              <p>Aicinām visus darbiniekus iesūtīt savu aktuālo soļu skaitu līdz katras svētdienas beigām.</p>
-            </div>
-
-            <div className="actions">
-              <a className="button" href={submitFormUrl} target="_blank">Iesniegt savus soļus →</a>
-              <a className="button secondary" href="#ka-piedalities">Skatīt noteikumus</a>
-            </div>
           </div>
 
-          <aside>
-            <div className="card">
-              <h3>📍 Nākamais sasniedzamais mērķis</h3>
-              <div className="nextIcon">{next.icon}</div>
-              <h2>{next.title}</h2>
-              <p>Vēl {format(next.steps - currentSteps)} soļi līdz sasniegšanai</p>
-            </div>
-            <div className="stats">
-              <div className="card"><h2>50</h2><p>Piedalās SPRK darbinieku</p></div>
-              <div className="card"><h2>{reached}/{checkpoints.length}</h2><p>Sasniegti checkpointi</p></div>
-            </div>
-          </aside>
+          <div className="checkpointStrip">
+            {checkpoints.map(c => {
+              const done = c.steps <= currentSteps;
+              const hidden = c.steps > next.steps;
+              return (
+                <div className={`miniCheckpoint ${done ? "done" : ""} ${hidden ? "mystery" : ""}`} key={c.steps}>
+                  {hidden ? (
+                    <span className="question">?</span>
+                  ) : (
+                    <>
+                      <div className="cpIcon">{c.icon}</div>
+                      <b>{format(c.steps)} soļu</b>
+                      <p>{c.title}</p>
+                    </>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="notice">
+            <b>Soļu progress tiek atjaunots reizi nedēļā — pirmdienās.</b>
+            <span>Aicinām darbiniekus iesūtīt soļu skaitu līdz katras svētdienas beigām.</span>
+          </div>
+
+          <div className="heroActions">
+            <a className="button" href={submitFormUrl} target="_blank">Iesniegt savus soļus →</a>
+            <a className="button secondary" href="#ka-piedalities">Skatīt noteikumus</a>
+          </div>
         </section>
 
-        <section className="gridTwo">
+        <section className="summaryGrid">
+          <div className="summaryCard next">
+            <p>📍 Nākamais sasniedzamais mērķis</p>
+            <div className="nextIcon">{next.icon}</div>
+            <h2>{next.title}</h2>
+            <span>Vēl {format(next.steps - currentSteps)} soļi līdz sasniegšanai</span>
+          </div>
+          <div className="summaryCard">
+            <h2>50</h2>
+            <p>Piedalās SPRK darbinieku</p>
+          </div>
+          <div className="summaryCard">
+            <h2>{reached}/{checkpoints.length}</h2>
+            <p>Sasniegti checkpointi</p>
+          </div>
+        </section>
+
+        <section className="contentGrid">
           <div className="card">
-            <h2>Iepriekšējās nedēļas aktīvākie soļotāji</h2>
-            {walkers.slice(0,5).map((w,i)=><div className="row" key={w.name}><span>{i+1}. {w.name}</span><b>{format(w.steps)}</b></div>)}
+            <div className="sectionHeader">
+              <div>
+                <h2>Iepriekšējās nedēļas aktīvākie soļotāji</h2>
+                <p>TOP 5 lielākais soļu skaits pēdējā nedēļā</p>
+              </div>
+              <b>TOP 5</b>
+            </div>
+            {walkers.slice(0,5).map((w,i)=><Row key={w.name} rank={i+1} name={w.name} value={format(w.steps)} />)}
+
             <div className="ranking">
               <h3>Kopējais staigātāju reitings</h3>
-              {walkers.map((w,i)=><div className="row small" key={w.name}><span>{i+1}. {w.name}</span><b>{format(w.steps)}</b></div>)}
+              {walkers.map((w,i)=><Row key={w.name} rank={i+1} name={w.name} value={format(w.steps)} small />)}
             </div>
           </div>
 
           <div className="card">
             <h2>Nodaļu reitings</h2>
-            <p className="muted">Reitings tiek aprēķināts pēc vidējā soļu skaita uz vienu dalībnieku: nodaļas kopējie soļi ÷ nodaļas dalībnieku skaits.</p>
+            <p className="muted">Lai reitings būtu godīgs arī starp dažāda lieluma nodaļām, tas tiek aprēķināts pēc vidējā soļu skaita uz vienu dalībnieku.</p>
             {departments.sort((a,b)=>b.average-a.average).map((d,i)=>
-              <div className="row dept" key={d.name}>
-                <span>{i+1}. {d.name}<small>{format(d.steps)} kopā · {d.participants} dalībnieki</small></span>
-                <b>{format(d.average)}<small>vidēji</small></b>
-              </div>)}
+              <div className="deptRow" key={d.name}>
+                <div className="rank">{i+1}</div>
+                <div className="deptName">
+                  <b>{d.name}</b>
+                  <span>{format(d.steps)} kopā · {d.participants} dalībnieki</span>
+                </div>
+                <div className="avg">
+                  <b>{format(d.average)}</b>
+                  <span>vidēji</span>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
-        <section className="gridTwo">
+        <section className="contentGrid lower">
           <div className="card">
             <h2>Regnet embed kods progress skalai</h2>
+            <p className="muted">Šo kodu var izmantot, lai Regnet lapā ieliktu mazo progress bloku ar aktuālo noieto soļu skaitu, mērķa skalu un atgādinājumu.</p>
             <div className="embedPreview">
               <b>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</b>
-              <div className="progress"><div style={{width: `${progress}%`}} /></div>
+              <div className="simpleBar"><div style={{width: `${progress}%`}} /></div>
               <p>{progress}% no mērķa sasniegti · Mērķis: {format(GOAL)} soļu</p>
               <small>Progress tiek atjaunots pirmdienās. Lūdzu iesūti soļus līdz svētdienas beigām.</small>
             </div>
@@ -158,15 +193,34 @@ export default function App(){
 
           <div className="card" id="ka-piedalities">
             <h2>Kā piedalīties un iesniegt savus soļus</h2>
-            <div className="steps">
-              <div><b>1</b><h3>Atver savu soļu lietotni</h3><p>Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni.</p></div>
-              <div><b>2</b><h3>Uzņem ekrānšāviņu</h3><p>Lai redzams soļu skaits un, ja iespējams, datums vai periods.</p></div>
-              <div><b>3</b><h3>Aizpildi anketu</h3><p>Ievadi vārdu, soļu skaitu un pievieno ekrānšāviņu.</p></div>
-              <div><b>4</b><h3>Palīdzi sasniegt checkpointus</h3><p>Katrs solis papildina kopējo progresu.</p></div>
+            <div className="stepsGrid">
+              <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni."/>
+              <Step n="2" title="Uzņem ekrānšāviņu" text="Lai redzams soļu skaits un, ja iespējams, datums vai periods."/>
+              <Step n="3" title="Aizpildi anketu" text="Ievadi vārdu, soļu skaitu un pievieno ekrānšāviņu."/>
+              <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu."/>
             </div>
           </div>
         </section>
       </div>
     </main>
   );
+}
+
+function Row({rank, name, value, small}) {
+  return (
+    <div className={`personRow ${small ? "small" : ""}`}>
+      <span><b>{rank}.</b> {name}</span>
+      <strong>{value}</strong>
+    </div>
+  )
+}
+
+function Step({n, title, text}) {
+  return (
+    <div className="stepCard">
+      <b>{n}</b>
+      <h3>{title}</h3>
+      <p>{text}</p>
+    </div>
+  )
 }
