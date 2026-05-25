@@ -1,0 +1,54 @@
+
+:root{--blue:#123B63;--light:#eef3f9;--border:#d8e2ee;--text:#102728}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:#f4f7fb;color:var(--text)}
+.page{max-width:1280px;margin:0 auto;padding:32px 24px}
+nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:14px;color:var(--blue)}
+.logoBox{height:54px;min-width:54px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--blue);padding:0 12px}
+.logoBox.big{font-size:26px;color:#37b4c5}
+.card{background:#fff;border:1px solid var(--border);padding:28px;box-shadow:0 1px 4px rgba(16,39,40,.04)}
+.heroGrid{display:grid;grid-template-columns:1.45fr .85fr;gap:24px}
+.gridTwo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+h1{font-size:68px;line-height:.95;margin:0 0 18px;color:var(--blue);letter-spacing:-.04em}
+h2,h3{color:var(--blue)}
+.intro{font-size:18px;line-height:1.55;color:#53606f;max-width:760px}
+.illustration{height:150px;background:linear-gradient(180deg,#fff,#f7fbff);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;font-size:52px;margin:28px 0}
+.current h2{font-size:32px;margin:0;color:var(--blue)}
+.current p,.muted{color:#64748b}
+.progressWrap{position:relative;padding-bottom:64px;margin:18px 0 14px}
+.progress{height:20px;background:#dbe4ef;overflow:hidden}
+.progress div{height:100%;background:var(--blue);box-shadow:0 0 12px rgba(18,59,99,.35)}
+.marker{position:absolute;top:10px;transform:translate(-50%,-50%);text-align:center}
+.dot{display:block;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15);margin:0 auto}
+.dot.done{background:var(--blue)}
+.marker small{display:block;background:#fff;padding:4px 8px;margin-top:14px;border:1px solid #edf2f7;color:#64748b;font-weight:700;white-space:nowrap}
+.checkpointGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.checkpoint{border:1px solid #edf2f7;background:#fff;padding:14px;min-height:92px;color:#64748b}
+.checkpoint.done{background:var(--light);border-color:rgba(18,59,99,.2);color:var(--blue)}
+.hiddenCp{display:flex;align-items:center;justify-content:center;background:#f8fafc;color:#cbd5e1}
+.question{border:1px solid #e2e8f0;border-radius:999px;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.checkpoint span{font-size:22px;display:block;margin-bottom:8px}
+.checkpoint b{display:block;font-size:12px}
+.checkpoint p{margin:4px 0 0;font-size:14px}
+.notice{margin-top:28px;background:var(--light);border:1px solid rgba(18,59,99,.15);padding:16px;color:#53606f}
+.notice b{color:var(--blue)}
+.actions{display:flex;gap:12px;margin-top:22px}
+.button{background:var(--blue);color:#fff;text-decoration:none;padding:12px 18px;font-weight:700;display:inline-block;border:0}
+.button.secondary{background:#fff;color:var(--blue);border:1px solid rgba(18,59,99,.3)}
+aside{display:grid;gap:24px;align-content:start}
+.nextIcon{font-size:42px;margin:8px 0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--light);padding:12px 14px;margin-bottom:10px}
+.row.small{font-size:14px}
+.ranking{margin-top:24px;max-height:460px;overflow:auto;border-top:1px solid var(--border);padding-top:18px}
+.row.dept span{font-weight:700}
+.row small{display:block;color:#64748b;font-size:12px;font-weight:400;margin-top:3px}
+.embedPreview{background:#f4f7fb;border:1px solid var(--border);padding:18px;margin:14px 0}
+.embedPreview small{display:block;margin-top:12px;color:#64748b;background:#fff;border:1px solid rgba(18,59,99,.15);padding:10px}
+textarea{width:100%;height:110px;border:1px solid var(--border);font-family:monospace;padding:12px;color:#64748b}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.steps div{border:1px solid var(--border);padding:16px;background:#fff}
+.steps b{background:var(--blue);color:#fff;display:flex;width:32px;height:32px;align-items:center;justify-content:center;margin-bottom:10px}
+@media(max-width:900px){.heroGrid,.gridTwo{grid-template-columns:1fr}h1{font-size:44px}.checkpointGrid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
