@@ -1,10 +1,10 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import sprkLogo from "./sprk25-logo.png";
 import journeyImage from "./sprk-celojums.png";
 const GOAL = 25000000;
-const currentSteps = 7842160;
+const DATA_URL = "https://sprk-my.sharepoint.com/my?id=%2Fpersonal%2Fanna%5Fsprk%5Fgov%5Flv%2FDocuments%2FDesktop%2FSPRK%20solu%20izaicinajums%2Fdata%2Ejson&parent=%2Fpersonal%2Fanna%5Fsprk%5Fgov%5Flv%2FDocuments%2FDesktop%2FSPRK%20solu%20izaicinajums&ga=1";
 const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
@@ -19,7 +19,7 @@ const checkpoints = [
   { steps: 20000000, icon: "🏔️", title: "Šķērsota Eirāzija" },
   { steps: 25000000, icon: "🌍", title: "Nostaigāta gandrīz puse pasaules" },
 ];
-const walkers = [
+const employees = [
   { name: "Agita Unska-Lapiņa", steps: 0 },
   { name: "Aiga Kariņa", steps: 0 },
   { name: "Aiga Lipenberga", steps: 0 },
@@ -136,24 +136,130 @@ const walkers = [
   { name: "Ēriks Eihenbergs", steps: 0 },
 ];
 
-const departments = [
-  { name: "Elektronisko sakaru un pasta departaments", steps: 1842000, participants: 16 },
-  { name: "Enerģētikas departaments", steps: 1765000, participants: 14 },
-  { name: "Ūdenssaimniecības, depozīta sistēmas un atkritumu departaments", steps: 1698000, participants: 12 },
-  { name: "Ekonomiskās analīzes departaments", steps: 1512000, participants: 9 },
-  { name: "Juridiskais departaments", steps: 1484000, participants: 8 },
-  { name: "Administratīvais departaments", steps: 1397000, participants: 10 },
-  { name: "Cilvēkresursu attīstības un pārvaldības nodaļa", steps: 1210000, participants: 4 },
-  { name: "Komunikācijas nodaļa", steps: 1183000, participants: 3 },
-  { name: "Padome", steps: 990000, participants: 2 },
-].map(d => ({...d, average: Math.round(d.steps / d.participants)}));
+
 
 function format(n){ return new Intl.NumberFormat("lv-LV").format(n); }
+function excelDateToJSDate(serial) {
+  const value = Number(serial);
+  if (!value) return null;
 
+  const utcDays = Math.floor(value - 25569);
+  const utcValue = utcDays * 86400;
+  const dateInfo = new Date(utcValue * 1000);
+
+  const fractionalDay = value - Math.floor(value);
+  const totalSeconds = Math.floor(86400 * fractionalDay);
+
+  dateInfo.setSeconds(totalSeconds);
+  return dateInfo;
+}
+
+function getWeekKey(date) {
+  if (!date) return "";
+
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+
+  return `${d.getUTCFullYear()}-${String(weekNo).padStart(2, "0")}`;
+}
+
+function cleanSteps(value) {
+  return Number(String(value || "0").replace(/\s/g, "").replace(",", ".")) || 0;
+}
 export default function App(){
-  const progress = Math.round((currentSteps / GOAL) * 100);
+  const [submissions, setSubmissions] = useState([]);
+
+  useEffect(() => {
+    fetch(DATA_URL)
+      .then((res) => res.json())
+      .then((data) => setSubmissions(Array.isArray(data) ? data : []))
+      .catch((error) => {
+        console.error("Neizdevās ielādēt soļu datus:", error);
+        setSubmissions([]);
+      });
+  }, []);
+
+  const normalizedSubmissions = submissions.map((row) => ({
+    name: row.Name || "",
+    department: row.Departaments || "",
+    steps: cleanSteps(row.Steps),
+    date: excelDateToJSDate(row.CompletionTime),
+    week: getWeekKey(excelDateToJSDate(row.CompletionTime)),
+  }));
+
+  const currentSteps = normalizedSubmissions.reduce((sum, row) => sum + row.steps, 0);
+
+  const walkers = employees
+    .map((employee) => {
+      const total = normalizedSubmissions
+        .filter((row) => row.name === employee.name)
+        .reduce((sum, row) => sum + row.steps, 0);
+
+      return {
+        name: employee.name,
+        steps: total,
+      };
+    })
+    .sort((a, b) => b.steps - a.steps);
+
+  const activeWeeks = [...new Set(normalizedSubmissions.map((row) => row.week).filter(Boolean))].sort();
+  const latestWeek = activeWeeks[activeWeeks.length - 1];
+
+  const weeklyTopWalkers = employees
+    .map((employee) => {
+      const total = normalizedSubmissions
+        .filter((row) => row.name === employee.name && row.week === latestWeek)
+        .reduce((sum, row) => sum + row.steps, 0);
+
+      return {
+        name: employee.name,
+        steps: total,
+      };
+    })
+    .filter((row) => row.steps > 0)
+    .sort((a, b) => b.steps - a.steps)
+    .slice(0, 5);
+
+  const departmentMap = normalizedSubmissions.reduce((acc, row) => {
+    if (!row.department) return acc;
+
+    if (!acc[row.department]) {
+      acc[row.department] = {
+        name: row.department,
+        steps: 0,
+        participants: new Set(),
+      };
+    }
+
+    acc[row.department].steps += row.steps;
+    if (row.name) acc[row.department].participants.add(row.name);
+
+    return acc;
+  }, {});
+
+  const departments = Object.values(departmentMap)
+    .map((department) => {
+      const participantCount = department.participants.size || 1;
+
+      return {
+        name: department.name,
+        steps: department.steps,
+        participants: participantCount,
+        average: Math.round(department.steps / participantCount),
+      };
+    })
+    .sort((a, b) => b.average - a.average);
+
+  const progress = Math.min(100, Math.round((currentSteps / GOAL) * 100));
   const next = checkpoints.find(c => c.steps > currentSteps) || checkpoints[checkpoints.length - 1];
   const reached = checkpoints.filter(c => c.steps <= currentSteps).length;
+  const participantCount = walkers.filter((w) => w.steps > 0).length;
+  const stepsUntilNext = Math.max(0, next.steps - currentSteps);
+
   const embedCode = `<iframe src="https://tava-lapa.lv/progress" width="100%" height="260" style="border:0;" title="Regulatora soļu izaicinājuma progress"></iframe>`;
 
   return (
@@ -206,7 +312,7 @@ export default function App(){
               <p>Nākamais sasniedzamais mērķis</p>
               <h3>{next.icon} {next.title}</h3>
             </div>
-            <strong>Vēl {format(next.steps - currentSteps)} soļi</strong>
+            <strong>Vēl {format(stepsUntilNext)} soļi</strong>
           </div>
 
           <div className="checkpointStrip">
@@ -245,11 +351,11 @@ export default function App(){
             <p>📍 Nākamais sasniedzamais mērķis</p>
             <div className="nextIcon">{next.icon}</div>
             <h2>{next.title}</h2>
-            <span>Vēl {format(next.steps - currentSteps)} soļi līdz sasniegšanai</span>
+            <span>Vēl {format(stepsUntilNext)} soļi līdz sasniegšanai</span>
           </div>
           <div className="summaryCard">
-            <h2>50</h2>
-            <p>Piedalās SPRK darbinieku</p>
+            <h2>{participantCount}</h2>
+<p>Piedalās SPRK darbinieku</p>
           </div>
           <div className="summaryCard">
             <h2>{reached}/{checkpoints.length}</h2>
@@ -266,7 +372,11 @@ export default function App(){
               </div>
               <b>TOP 5</b>
             </div>
-            {walkers.slice(0,5).map((w,i)=><Row key={w.name} rank={i+1} name={w.name} value={format(w.steps)} />)}
+            {weeklyTopWalkers.length > 0 ? (
+  weeklyTopWalkers.map((w,i)=><Row key={w.name} rank={i+1} name={w.name} value={format(w.steps)} />)
+) : (
+  <p className="muted">Iepriekšējās nedēļas dati vēl nav iesniegti.</p>
+)}
 
             <div className="ranking">
               <h3>Kopējais staigātāju reitings</h3>
@@ -298,7 +408,7 @@ export default function App(){
             <h2>Regnet embed kods progress skalai</h2>
             <p className="muted">Šo kodu var izmantot, lai Regnet lapā ieliktu mazo progress bloku ar aktuālo noieto soļu skaitu, mērķa skalu un atgādinājumu.</p>
             <div className="embedPreview">
-              <b>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</b>
+              <b>👣 Šobrīd esam nogājuši {format(stepsUntilNext)} soļu</b>
               <div className="simpleBar"><div style={{width: `${progress}%`}} /></div>
               <p>{progress}% no mērķa sasniegti · Mērķis: {format(GOAL)} soļu</p>
               <small>Progress tiek atjaunots pirmdienās. Lūdzu iesūti soļus līdz svētdienas beigām.</small>
@@ -310,8 +420,8 @@ export default function App(){
             <h2>Kā piedalīties un iesniegt savus soļus</h2>
             <div className="stepsGrid">
               <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni."/>
-              <Step n="2" title="Uzņem ekrānšāviņu" text="Lai redzams soļu skaits un, ja iespējams, datums vai periods."/>
-              <Step n="3" title="Aizpildi anketu" text="Ievadi vārdu, soļu skaitu un pievieno ekrānšāviņu."/>
+              <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu."/>
+<Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu."/>
               <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu."/>
             </div>
           </div>
