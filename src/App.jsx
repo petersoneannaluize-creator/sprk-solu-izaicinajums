@@ -4,7 +4,7 @@ import "./style.css";
 import sprkLogo from "./sprk25-logo.png";
 import journeyImage from "./sprk-celojums.png";
 const GOAL = 25000000;
-const DATA_URL = "https://sprk-my.sharepoint.com/:u:/g/personal/anna_sprk_gov_lv/IQDyK8alOZRSRLa5GKkv0oAPAatazq48O4soViRVdtYvgkQ";
+const DATA_URL = "/api/data";
 const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
