@@ -4,8 +4,7 @@ import "./style.css";
 import sprkLogo from "./sprk25-logo.png";
 import journeyImage from "./sprk-celojums.png";
 const GOAL = 25000000;
-const DATA_URL = "https://sprk-my.sharepoint.com/my?id=%2Fpersonal%2Fanna%5Fsprk%5Fgov%5Flv%2FDocuments%2FDesktop%2FSPRK%20solu%20izaicinajums%2Fdata%2Ejson&parent=%2Fpersonal%2Fanna%5Fsprk%5Fgov%5Flv%2FDocuments%2FDesktop%2FSPRK%20solu%20izaicinajums&ga=1";
-const submitFormUrl = "https://forms.office.com/";
+const DATA_URL = "https://sprk-my.sharepoint.com/:u:/g/personal/anna_sprk_gov_lv/IQDyK8alOZRSRLa5GKkv0oAPAatazq48O4soViRVdtYvgkQ";
 
 const checkpoints = [
   { steps: 50000, icon: "🚶", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
@@ -387,7 +386,7 @@ export default function App(){
           <div className="card">
             <h2>Nodaļu reitings</h2>
             <p className="muted">Lai reitings būtu godīgs arī starp dažāda lieluma nodaļām, tas tiek aprēķināts pēc vidējā soļu skaita uz vienu dalībnieku.</p>
-            {departments.sort((a,b)=>b.average-a.average).map((d,i)=>
+            {departments.map((d,i)=>
               <div className="deptRow" key={d.name}>
                 <div className="rank">{i+1}</div>
                 <div className="deptName">
@@ -408,7 +407,7 @@ export default function App(){
             <h2>Regnet embed kods progress skalai</h2>
             <p className="muted">Šo kodu var izmantot, lai Regnet lapā ieliktu mazo progress bloku ar aktuālo noieto soļu skaitu, mērķa skalu un atgādinājumu.</p>
             <div className="embedPreview">
-              <b>👣 Šobrīd esam nogājuši {format(stepsUntilNext)} soļu</b>
+              <b>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</b>
               <div className="simpleBar"><div style={{width: `${progress}%`}} /></div>
               <p>{progress}% no mērķa sasniegti · Mērķis: {format(GOAL)} soļu</p>
               <small>Progress tiek atjaunots pirmdienās. Lūdzu iesūti soļus līdz svētdienas beigām.</small>
