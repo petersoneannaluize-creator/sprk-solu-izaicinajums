@@ -4,7 +4,7 @@ import "./style.css";
 import sprkLogo from "./sprk25-logo.png";
 import journeyImage from "./sprk-celojums.png";
 const GOAL = 25000000;
-const DATA_URL = "/api/data";
+const DATA_URL = "/data.json";
 const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
