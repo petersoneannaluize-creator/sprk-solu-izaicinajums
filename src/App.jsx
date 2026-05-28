@@ -180,7 +180,7 @@ function pluralParticipants(count) {
 function CheckpointIcon({ checkpoint }) {
   switch (checkpoint.icon) {
     case "latvia":
-      return <LatviaFlagIcon />;
+      return <LatviaShapeIcon />;
     case "eu":
       return <EUFlagIcon />;
     case "walk":
@@ -204,12 +204,37 @@ function CheckpointIcon({ checkpoint }) {
   }
 }
 
-function LatviaFlagIcon() {
+function LatviaShapeIcon() {
   return (
-    <span className="flagIcon" aria-label="Latvijas karogs" title="Latvija">
-      <svg viewBox="0 0 36 24" className="flagSvg" xmlns="http://www.w3.org/2000/svg">
-        <rect width="36" height="24" rx="4" fill="#9E3039" />
-        <rect y="9" width="36" height="6" fill="#FFFFFF" />
+    <span className="latviaIcon" aria-label="Latvijas kontūra" title="Latvija">
+      <svg
+        viewBox="0 0 64 42"
+        className="latviaSvg"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+      >
+        <path
+          d="M5.5 21.5
+             C7.5 17.5 11.8 15.8 16.2 16.4
+             C18.8 12.4 24.8 10.4 30.2 12.3
+             C34.8 8.9 41.2 9.8 45.1 13.7
+             C51.4 13.4 57.8 16.8 59.2 22
+             C56.1 24.8 52.1 27.2 47.5 26.8
+             C44.4 31.2 37.8 32 33.2 28.8
+             C29.1 32.6 22.2 31.8 18.8 27.9
+             C13.5 29.2 8.1 27 5.5 21.5Z"
+          fill="#9E3039"
+        />
+        <path
+          d="M10.2 21.6
+             C14.1 20.3 18 20.5 22.2 21.7
+             C26.8 23 31.5 22.8 36.3 21.4
+             C41.6 19.9 47.5 20.1 54.1 21.8"
+          fill="none"
+          stroke="#FFFFFF"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+        />
       </svg>
     </span>
   );
