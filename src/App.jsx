@@ -208,60 +208,67 @@ function LatviaShapeIcon() {
   return (
     <span className="latviaIcon" aria-label="Latvijas kontūra" title="Latvija">
       <svg
-        viewBox="0 0 64 42"
+        viewBox="0 0 498 299"
         className="latviaSvg"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
       >
+        <defs>
+          <clipPath id="latviaRealClip">
+            <path d="M 489 191 L 465 138 L 449 131 L 454 87 L 431 58 L 400 51 L 355 55 L 332 28 L 313 26 L 286 8 L 275 8 L 217 36 L 223 103 L 213 125 L 199 136 L 176 132 L 157 100 L 134 80 L 118 55 L 104 54 L 84 67 L 56 73 L 39 102 L 33 141 L 13 169 L 8 246 L 18 262 L 35 263 L 58 237 L 85 226 L 139 228 L 147 234 L 202 226 L 216 239 L 270 230 L 274 241 L 303 241 L 326 250 L 365 287 L 392 290 L 414 275 L 457 265 L 464 241 L 487 217 Z" />
+          </clipPath>
+        </defs>
+
         <path
-          d="M5.5 21.5
-             C7.5 17.5 11.8 15.8 16.2 16.4
-             C18.8 12.4 24.8 10.4 30.2 12.3
-             C34.8 8.9 41.2 9.8 45.1 13.7
-             C51.4 13.4 57.8 16.8 59.2 22
-             C56.1 24.8 52.1 27.2 47.5 26.8
-             C44.4 31.2 37.8 32 33.2 28.8
-             C29.1 32.6 22.2 31.8 18.8 27.9
-             C13.5 29.2 8.1 27 5.5 21.5Z"
+          d="M 489 191 L 465 138 L 449 131 L 454 87 L 431 58 L 400 51 L 355 55 L 332 28 L 313 26 L 286 8 L 275 8 L 217 36 L 223 103 L 213 125 L 199 136 L 176 132 L 157 100 L 134 80 L 118 55 L 104 54 L 84 67 L 56 73 L 39 102 L 33 141 L 13 169 L 8 246 L 18 262 L 35 263 L 58 237 L 85 226 L 139 228 L 147 234 L 202 226 L 216 239 L 270 230 L 274 241 L 303 241 L 326 250 L 365 287 L 392 290 L 414 275 L 457 265 L 464 241 L 487 217 Z"
           fill="#9E3039"
         />
-        <path
-          d="M10.2 21.6
-             C14.1 20.3 18 20.5 22.2 21.7
-             C26.8 23 31.5 22.8 36.3 21.4
-             C41.6 19.9 47.5 20.1 54.1 21.8"
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-        />
+
+        <g clipPath="url(#latviaRealClip)">
+          <rect x="0" y="125.6" width="498" height="47.8" fill="#FFFFFF" />
+        </g>
       </svg>
     </span>
   );
 }
 
 function EUFlagIcon() {
-  const stars = [
-    [18, 6],
-    [22.5, 7.2],
-    [25.8, 10.5],
-    [27, 15],
-    [25.8, 18.5],
-    [22.5, 21],
-    [18, 22],
-    [13.5, 21],
-    [10.2, 18.5],
-    [9, 15],
-    [10.2, 10.5],
-    [13.5, 7.2],
-  ];
+  const centerX = 18;
+  const centerY = 12;
+  const radius = 5.8;
+
+  const makeStarPoints = (cx, cy, outer = 1.05, inner = 0.45) => {
+    const points = [];
+
+    for (let i = 0; i < 10; i += 1) {
+      const angle = (-90 + i * 36) * (Math.PI / 180);
+      const r = i % 2 === 0 ? outer : inner;
+      points.push(`${cx + Math.cos(angle) * r},${cy + Math.sin(angle) * r}`);
+    }
+
+    return points.join(" ");
+  };
+
+  const stars = Array.from({ length: 12 }, (_, index) => {
+    const angle = (-90 + index * 30) * (Math.PI / 180);
+
+    return {
+      x: centerX + Math.cos(angle) * radius,
+      y: centerY + Math.sin(angle) * radius,
+    };
+  });
 
   return (
     <span className="flagIcon" aria-label="Eiropas Savienības karogs" title="Eiropas Savienība">
-      <svg viewBox="0 0 36 24" className="flagSvg" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 36 24" className="flagSvg" xmlns="http://www.w3.org/2000/svg" role="img">
         <rect width="36" height="24" rx="4" fill="#1E4FA1" />
-        {stars.map(([cx, cy], index) => (
-          <circle key={index} cx={cx} cy={cy} r="1" fill="#FFD84D" />
+
+        {stars.map((star, index) => (
+          <polygon
+            key={index}
+            points={makeStarPoints(star.x, star.y)}
+            fill="#FFD84D"
+          />
         ))}
       </svg>
     </span>
