@@ -9,15 +9,15 @@ const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
   { steps: 50000, icon: "walk", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
-  { steps: 500000, icon: "latvia", title: "Apiets apkārt Latvijai" },
-  { steps: 1000000, icon: "river", title: "Noieta Daugava visā tās garumā" },
-  { steps: 2000000, icon: "shell", title: "Noiets Camino de Santiago" },
+  { steps: 500000, icon: "latvia", title: "Apiesim apkārt Latvijai" },
+  { steps: 1000000, icon: "river", title: "Noiesim Daugavu visā tās garumā" },
+  { steps: 2000000, icon: "shell", title: "Noiesim Camino de Santiago ceļu" },
   { steps: 3000000, icon: "wall", title: "Noiets Ķīnas mūris" },
-  { steps: 7000000, icon: "anchor", title: "Apiets apkārt Baltijas jūrai" },
-  { steps: 12000000, icon: "eu", title: "Apiets apkārt Eiropai" },
-  { steps: 15000000, icon: "desert", title: "Noieta Nīla visā tās garumā" },
-  { steps: 20000000, icon: "mountain", title: "Šķērsota Eirāzija" },
-  { steps: 25000000, icon: "globe", title: "Nostaigāta gandrīz puse pasaules" },
+  { steps: 7000000, icon: "anchor", title: "Apiesim apkārt Baltijas jūras līcim" },
+  { steps: 12000000, icon: "eu", title: "Apiesim apkārt Eiropai" },
+  { steps: 15000000, icon: "desert", title: "Noiesim upi "Nīla" visā tās garumā" },
+  { steps: 20000000, icon: "mountain", title: "Šķērsojam kontintentu – Eirāzija" },
+  { steps: 25000000, icon: "globe", title: "Nostaigāsim gandrīz pusi pasaules" },
 ];
 
 const employees = [
@@ -413,12 +413,14 @@ export default function App() {
             <h1>Regulatora soļu izaicinājums</h1>
 
             <p className="lead">
-              🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam un mūsu jubilejas gadā kopā noiet 25 miljonus soļu! 👣
+              🎉 Svinot Regulatora 25 gadu jubileju, aicinām darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā kopā noiet 25 miljonus soļu! 👣
+              Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu, kas ir bijuši iepriekšējās nedēļas aktīvākie staigātāji un kuri kolēģi ir vislielākie staigātāji!
             </p>
 
             <p className="lead smaller">
-              Soļus jāiesniedz svētdienā, lai pirmdienās varam atjaunot kopējo progresu, TOP soļotājus un nodaļu reitingu.
-            </p>
+              Soļus kopskaitu – pēdējās 7 dienas – jāiesniedz svētdienā, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu. 
+              Pievienot soļus ir pavisam vienkārši – nav papildus aplikācijas vai sarežģīta sistēma. Svētdienas vakarā apskati savā viedierīcē noieto soļu skaitu par pēdējo nedēļu (pirmdiena – svētdiena) un ievadi kopējo soļu skaitu anketā. Tas arī viss! 
+              Detalizētāku informāciju, kā to izdarīt, skati lapas beigās. Ja vajag palīdzību – droši, raksti vai ziņo man, komunikācijas speciālsitei Annai, ar prieku palīdzēšu!
           </div>
 
           <div>
@@ -483,8 +485,8 @@ export default function App() {
           </div>
 
           <div className="notice">
-            <b>Soļu progress tiek atjaunots reizi nedēļā — pirmdienās.</b>
-            <span>Aicinām darbiniekus iesūtīt soļu skaitu līdz katras svētdienas beigām.</span>
+            <b>Soļu progress tiek atjaunots reizi nedēļā — pirmdienu rītos.</b>
+            <span>Darbinieki aicināti iesūtīt savu soļu skaitu līdz katras svētdienas beigām.</span>
           </div>
 
           <div className="heroActions">
@@ -516,7 +518,7 @@ export default function App() {
             <h2>
               {reached}/{checkpoints.length}
             </h2>
-            <p>Sasniegti checkpointi</p>
+            <p>Sasniegtie mērķi </p>
           </div>
         </section>
 
@@ -642,7 +644,7 @@ export default function App() {
               <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni." />
               <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu." />
               <Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu." />
-              <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu." />
+              <Step n="4" title="Palīdzi sasniegt nākamo mērķi" text="Katrs iesniegtais solis papildina kopējo progresu. Tuvojamies 25 miljoniem!" />
             </div>
           </div>
         </section>
@@ -678,7 +680,7 @@ function ProgressEmbed({ currentSteps, goal, progress, next, stepsUntilNext }) {
         </div>
 
         <div className="embedNext">
-          <span>Nākamais mērķis</span>
+          <span>Nākamais mērķis, ko vēlamies kopā sasniegt </span>
           <b>
             <CheckpointIcon checkpoint={next} /> {next.title}
           </b>
