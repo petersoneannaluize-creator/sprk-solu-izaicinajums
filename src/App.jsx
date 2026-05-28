@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import sprkLogo from "./sprk25-logo.png";
 import journeyImage from "./sprk-celojums.png";
+
 const GOAL = 25000000;
 const DATA_URL = "/data.json";
 const submitFormUrl = "https://forms.office.com/";
@@ -19,6 +19,7 @@ const checkpoints = [
   { steps: 20000000, icon: "🏔️", title: "Šķērsota Eirāzija" },
   { steps: 25000000, icon: "🌍", title: "Nostaigāta gandrīz puse pasaules" },
 ];
+
 const employees = [
   { name: "Agita Unska-Lapiņa", steps: 0 },
   { name: "Aiga Kariņa", steps: 0 },
@@ -136,9 +137,10 @@ const employees = [
   { name: "Ēriks Eihenbergs", steps: 0 },
 ];
 
+function format(n) {
+  return new Intl.NumberFormat("lv-LV").format(n);
+}
 
-
-function format(n){ return new Intl.NumberFormat("lv-LV").format(n); }
 function excelDateToJSDate(serial) {
   const value = Number(serial);
   if (!value) return null;
@@ -170,7 +172,12 @@ function getWeekKey(date) {
 function cleanSteps(value) {
   return Number(String(value || "0").replace(/\s/g, "").replace(",", ".")) || 0;
 }
-export default function App(){
+
+function pluralParticipants(count) {
+  return count === 1 ? "dalībnieks" : "dalībnieki";
+}
+
+export default function App() {
   const [submissions, setSubmissions] = useState([]);
 
   useEffect(() => {
@@ -255,34 +262,69 @@ export default function App(){
     .sort((a, b) => b.average - a.average);
 
   const progress = Math.min(100, Math.round((currentSteps / GOAL) * 100));
-  const next = checkpoints.find(c => c.steps > currentSteps) || checkpoints[checkpoints.length - 1];
-  const reached = checkpoints.filter(c => c.steps <= currentSteps).length;
+  const next = checkpoints.find((c) => c.steps > currentSteps) || checkpoints[checkpoints.length - 1];
+  const reached = checkpoints.filter((c) => c.steps <= currentSteps).length;
   const participantCount = walkers.filter((w) => w.steps > 0).length;
   const stepsUntilNext = Math.max(0, next.steps - currentSteps);
+
+  const topDepartments = departments.slice(0, 3);
+  const otherDepartments = departments.slice(3);
+  const maxDepartmentAverage = departments[0]?.average || 1;
+
+  const isProgressEmbed = window.location.pathname === "/progress";
+  const isDepartmentsEmbed = window.location.pathname === "/departamenti";
+
+  if (isProgressEmbed) {
+    return (
+      <ProgressEmbed
+        currentSteps={currentSteps}
+        goal={GOAL}
+        progress={progress}
+        next={next}
+        stepsUntilNext={stepsUntilNext}
+      />
+    );
+  }
+
+  if (isDepartmentsEmbed) {
+    return (
+      <DepartmentsEmbed
+        topDepartments={topDepartments}
+        otherDepartments={otherDepartments}
+        maxDepartmentAverage={maxDepartmentAverage}
+      />
+    );
+  }
 
   return (
     <main>
       <div className="page">
         <nav className="topbar">
-         <div className="brand">
-<img src={sprkLogo} alt="SPRK 25" className="sprk-logo" />
-</div>
-          <a className="button" href={submitFormUrl} target="_blank">Iesniegt soļus</a>
+          <div className="brand">
+            <img src={sprkLogo} alt="SPRK 25" className="sprk-logo" />
+          </div>
+
+          <a className="button" href={submitFormUrl} target="_blank" rel="noreferrer">
+            Iesniegt soļus
+          </a>
         </nav>
 
         <section className="heroShell">
           <div className="heroText">
             <p className="eyebrow">25 gadi · 25 miljoni soļu</p>
             <h1>Regulatora soļu izaicinājums</h1>
+
             <p className="lead">
               🎉 Svinot Regulatora 25 gadu jubileju, aicinām visus regulatora darbiniekus pievienoties kopīgam soļu izaicinājumam un mūsu jubilejas gadā kopā noiet 25 miljonus soļu! 👣
             </p>
+
             <p className="lead smaller">
-              Soļus jāiesniedz svētdienā, lai mūsu Komunikācijas speciāliste Anna pirmdienās var informāciju atjaunot. Jo vairāk piedalāmies, jo vairāk soļi noieti kopā!
+              Soļus jāiesniedz svētdienā, lai pirmdienās varam atjaunot kopējo progresu, TOP soļotājus un nodaļu reitingu.
             </p>
           </div>
 
-          <div> <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
+          <div>
+            <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
           </div>
 
           <div className="progressPanel clean">
@@ -291,16 +333,19 @@ export default function App(){
                 <h2>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</h2>
                 <p>No kopējā mērķa — {format(GOAL)} soļiem</p>
               </div>
+
               <div className="progressBadge">{progress}%</div>
             </div>
 
             <div className="progressLine cleanBar">
-              <div className="fill" style={{width: `${progress}%`}} />
+              <div className="fill" style={{ width: `${progress}%` }} />
             </div>
 
             <div className="progressMeta">
               <span>0</span>
-              <strong>{format(currentSteps)} / {format(GOAL)} soļu</strong>
+              <strong>
+                {format(currentSteps)} / {format(GOAL)} soļu
+              </strong>
               <span>{format(GOAL)}</span>
             </div>
           </div>
@@ -308,15 +353,19 @@ export default function App(){
           <div className="nextInline">
             <div>
               <p>Nākamais sasniedzamais mērķis</p>
-              <h3>{next.icon} {next.title}</h3>
+              <h3>
+                {next.icon} {next.title}
+              </h3>
             </div>
+
             <strong>Vēl {format(stepsUntilNext)} soļi</strong>
           </div>
 
           <div className="checkpointStrip">
-            {checkpoints.map(c => {
+            {checkpoints.map((c) => {
               const done = c.steps <= currentSteps;
               const hidden = c.steps > next.steps;
+
               return (
                 <div className={`miniCheckpoint ${done ? "done" : ""} ${hidden ? "mystery" : ""}`} key={c.steps}>
                   {hidden ? (
@@ -329,7 +378,7 @@ export default function App(){
                     </>
                   )}
                 </div>
-              )
+              );
             })}
           </div>
 
@@ -339,8 +388,12 @@ export default function App(){
           </div>
 
           <div className="heroActions">
-            <a className="button" href={submitFormUrl} target="_blank">Iesniegt savus soļus →</a>
-            <a className="button secondary" href="#ka-piedalities">Skatīt noteikumus</a>
+            <a className="button" href={submitFormUrl} target="_blank" rel="noreferrer">
+              Iesniegt savus soļus →
+            </a>
+            <a className="button secondary" href="#ka-piedalities">
+              Skatīt noteikumus
+            </a>
           </div>
         </section>
 
@@ -351,86 +404,280 @@ export default function App(){
             <h2>{next.title}</h2>
             <span>Vēl {format(stepsUntilNext)} soļi līdz sasniegšanai</span>
           </div>
+
           <div className="summaryCard">
             <h2>{participantCount}</h2>
-<p>Piedalās SPRK darbinieku</p>
+            <p>Piedalās SPRK darbinieku</p>
           </div>
+
           <div className="summaryCard">
-            <h2>{reached}/{checkpoints.length}</h2>
+            <h2>
+              {reached}/{checkpoints.length}
+            </h2>
             <p>Sasniegti checkpointi</p>
           </div>
         </section>
 
-        <section className="contentGrid">
+        <section className="contentGrid peopleGrid">
           <div className="card">
             <div className="sectionHeader">
               <div>
-                <h2>Iepriekšējās nedēļas aktīvākie soļotāji</h2>
-                <p>TOP 5 lielākais soļu skaits pēdējā nedēļā</p>
+                <h2>Kopējais staigātāju reitings</h2>
+                <p>Visi iesniegtie soļi kopš izaicinājuma sākuma</p>
               </div>
-              <b>TOP 5</b>
+              <b>Kopā</b>
             </div>
-            {weeklyTopWalkers.length > 0 ? (
-  weeklyTopWalkers.map((w,i)=><Row key={w.name} rank={i+1} name={w.name} value={format(w.steps)} />)
-) : (
-  <p className="muted">Iepriekšējās nedēļas dati vēl nav iesniegti.</p>
-)}
 
-            <div className="ranking">
-              <h3>Kopējais staigātāju reitings</h3>
-              {walkers.map((w,i)=><Row key={w.name} rank={i+1} name={w.name} value={format(w.steps)} small />)}
+            <div className="ranking fullRanking">
+              {walkers.map((w, i) => (
+                <Row key={w.name} rank={i + 1} name={w.name} value={format(w.steps)} small />
+              ))}
             </div>
           </div>
 
           <div className="card">
-            <h2>Nodaļu reitings</h2>
-            <p className="muted">Lai reitings būtu godīgs arī starp dažāda lieluma nodaļām, tas tiek aprēķināts pēc vidējā soļu skaita uz vienu dalībnieku.</p>
-            {departments.map((d,i)=>
-              <div className="deptRow" key={d.name}>
-                <div className="rank">{i+1}</div>
-                <div className="deptName">
-                  <b>{d.name}</b>
-                  <span>{format(d.steps)} kopā · {d.participants} dalībnieki</span>
-                </div>
-                <div className="avg">
-                  <b>{format(d.average)}</b>
-                  <span>vidēji</span>
-                </div>
+            <div className="sectionHeader">
+              <div>
+                <h2>Pagājušās nedēļas aktīvākie</h2>
+                <p>TOP 5 lielākais iesniegto soļu skaits nedēļā</p>
               </div>
+              <b>TOP 5</b>
+            </div>
+
+            {weeklyTopWalkers.length > 0 ? (
+              weeklyTopWalkers.map((w, i) => (
+                <Row key={w.name} rank={i + 1} name={w.name} value={format(w.steps)} />
+              ))
+            ) : (
+              <p className="muted">Pagājušās nedēļas dati vēl nav iesniegti.</p>
             )}
           </div>
         </section>
-<section className="contentGrid lower instructionsOnly">
-  <div className="card instructionCard" id="ka-piedalities">
-    <h2>Kā piedalīties un iesniegt savus soļus</h2>
-    <div className="stepsGrid">
-      <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni."/>
-      <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu."/>
-      <Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu."/>
-      <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu."/>
-    </div>
-  </div>
-</section>
+
+        <section className="contentGrid departmentGrid">
+          <div className="card departmentCard">
+            <h2>Nodaļu reitings</h2>
+            <p className="muted">
+              TOP skaitļi rāda nodaļas vidējo kopējo iesniegto soļu skaitu uz vienu dalībnieku. Aprēķins: nodaļas visi iesniegtie soļi ÷ unikālo dalībnieku skaits.
+            </p>
+
+            {topDepartments.length > 0 ? (
+              <>
+                <div className="departmentExplanation">
+                  <b>Kā veidojas TOP?</b>
+                  <span>
+                    Reitings tiek kārtots pēc rādītāja “vidēji uz dalībnieku”, lai lielākas nodaļas automātiski nebūtu priekšā tikai cilvēku skaita dēļ.
+                  </span>
+                </div>
+
+                <div className="departmentPodium">
+                  {topDepartments.map((d, index) => {
+                    const placeClass = index === 0 ? "first" : index === 1 ? "second" : "third";
+                    const placeLabel = index === 0 ? "1. vieta" : index === 1 ? "2. vieta" : "3. vieta";
+                    const icon = index === 0 ? "🏆" : index === 1 ? "🥾" : "🚶";
+
+                    return (
+                      <div className={`podiumCard ${placeClass}`} key={d.name}>
+                        <div className="podiumIcon">{icon}</div>
+
+                        <div className="podiumBar">
+                          <span>{placeLabel}</span>
+                          <b>{format(d.average)}</b>
+                          <small>vidēji uz dalībnieku</small>
+                        </div>
+
+                        <h3>{d.name}</h3>
+                        <p>
+                          {format(d.steps)} kopā · {d.participants} {pluralParticipants(d.participants)}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {otherDepartments.length > 0 && (
+                  <div className="otherDepartments">
+                    <h3>Pārējās nodaļas</h3>
+
+                    {otherDepartments.map((d, index) => {
+                      const barWidth = Math.max(8, Math.round((d.average / maxDepartmentAverage) * 100));
+
+                      return (
+                        <div className="otherDeptRow" key={d.name}>
+                          <div className="otherDeptRank">{index + 4}</div>
+
+                          <div className="otherDeptMain">
+                            <div className="otherDeptTop">
+                              <b>{d.name}</b>
+                              <strong>{format(d.average)}</strong>
+                            </div>
+
+                            <div className="otherDeptBar">
+                              <div style={{ width: `${barWidth}%` }} />
+                            </div>
+
+                            <p>
+                              {format(d.steps)} kopā · {d.participants} {pluralParticipants(d.participants)} · vidēji uz dalībnieku
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </>
+            ) : (
+              <p className="muted">Nodaļu dati vēl nav iesniegti.</p>
+            )}
+          </div>
+        </section>
+
+        <section className="contentGrid lower instructionsOnly">
+          <div className="card instructionCard" id="ka-piedalities">
+            <h2>Kā piedalīties un iesniegt savus soļus</h2>
+
+            <div className="stepsGrid">
+              <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni." />
+              <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu." />
+              <Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu." />
+              <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu." />
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );
 }
 
-function Row({rank, name, value, small}) {
+function ProgressEmbed({ currentSteps, goal, progress, next, stepsUntilNext }) {
   return (
-    <div className={`personRow ${small ? "small" : ""}`}>
-      <span><b>{rank}.</b> {name}</span>
-      <strong>{value}</strong>
-    </div>
-  )
+    <main className="embedPage">
+      <section className="embedCard progressEmbed">
+        <div className="embedHeader">
+          <div>
+            <p className="embedEyebrow">SPRK soļu izaicinājums</p>
+            <h1>👣 {format(currentSteps)} soļu</h1>
+            <p>No kopējā mērķa — {format(goal)} soļiem</p>
+          </div>
+
+          <div className="embedBadge">{progress}%</div>
+        </div>
+
+        <div className="embedProgressLine">
+          <div style={{ width: `${progress}%` }} />
+        </div>
+
+        <div className="embedMeta">
+          <span>0</span>
+          <strong>
+            {format(currentSteps)} / {format(goal)}
+          </strong>
+          <span>{format(goal)}</span>
+        </div>
+
+        <div className="embedNext">
+          <span>Nākamais mērķis</span>
+          <b>
+            {next.icon} {next.title}
+          </b>
+          <strong>Vēl {format(stepsUntilNext)} soļi</strong>
+        </div>
+      </section>
+    </main>
+  );
 }
 
-function Step({n, title, text}) {
+function DepartmentsEmbed({ topDepartments, otherDepartments, maxDepartmentAverage }) {
+  return (
+    <main className="embedPage">
+      <section className="embedCard">
+        <h1 className="embedTitle">Nodaļu reitings</h1>
+
+        <p className="embedDescription">
+          TOP skaitļi rāda nodaļas vidējo kopējo iesniegto soļu skaitu uz vienu dalībnieku.
+        </p>
+
+        {topDepartments.length > 0 ? (
+          <>
+            <div className="embedPodium">
+              {topDepartments.map((d, index) => {
+                const placeClass = index === 0 ? "first" : index === 1 ? "second" : "third";
+                const placeLabel = index === 0 ? "1. vieta" : index === 1 ? "2. vieta" : "3. vieta";
+                const icon = index === 0 ? "🏆" : index === 1 ? "🥾" : "🚶";
+
+                return (
+                  <div className={`embedPodiumCard ${placeClass}`} key={d.name}>
+                    <div className="embedPodiumIcon">{icon}</div>
+
+                    <div className="embedPodiumBar">
+                      <span>{placeLabel}</span>
+                      <b>{format(d.average)}</b>
+                      <small>vidēji uz dalībnieku</small>
+                    </div>
+
+                    <h2>{d.name}</h2>
+                    <p>
+                      {format(d.steps)} kopā · {d.participants} {pluralParticipants(d.participants)}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {otherDepartments.length > 0 && (
+              <div className="embedOtherDepartments">
+                {otherDepartments.map((d, index) => {
+                  const barWidth = Math.max(8, Math.round((d.average / maxDepartmentAverage) * 100));
+
+                  return (
+                    <div className="embedOtherDeptRow" key={d.name}>
+                      <span>{index + 4}</span>
+
+                      <div>
+                        <div className="embedOtherDeptTop">
+                          <b>{d.name}</b>
+                          <strong>{format(d.average)}</strong>
+                        </div>
+
+                        <div className="embedOtherDeptBar">
+                          <div style={{ width: `${barWidth}%` }} />
+                        </div>
+
+                        <p>
+                          {format(d.steps)} kopā · {d.participants} {pluralParticipants(d.participants)}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        ) : (
+          <p className="muted">Nodaļu dati vēl nav iesniegti.</p>
+        )}
+      </section>
+    </main>
+  );
+}
+
+function Row({ rank, name, value, small }) {
+  return (
+    <div className={`personRow ${small ? "small" : ""}`}>
+      <span>
+        <b>{rank}.</b> {name}
+      </span>
+      <strong>{value}</strong>
+    </div>
+  );
+}
+
+function Step({ n, title, text }) {
   return (
     <div className="stepCard">
       <b>{n}</b>
       <h3>{title}</h3>
       <p>{text}</p>
     </div>
-  )
+  );
 }
