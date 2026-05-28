@@ -635,17 +635,59 @@ export default function App() {
           </div>
         </section>
 
-        <section className="contentGrid lower instructionsOnly">
-          <div className="card instructionCard" id="ka-piedalities">
-            <h2>Kā piedalīties un iesniegt savus soļus</h2>
+      <section className="contentGrid lower instructionsOnly">
+  <div className="card instructionCard illustratedInstructionCard" id="ka-piedalities">
+    <h2>Kā piedalīties un iesniegt savus soļus</h2>
 
-            <div className="stepsGrid">
-              <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni." />
-              <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu." />
-              <Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu." />
-              <Step n="4" title="Palīdzi sasniegt nākamo mērķi" text="Katrs iesniegtais solis papildina kopējo progresu. Tuvojamies 25 miljoniem!" />
-            </div>
-          </div>
+    <p className="instructionIntro">
+      Šis izaicinājums ir par aktīvāku ikdienu un kopīgu mērķi — sasniegt 25 miljonus soļu Regulatora 25 gadu jubilejā. Mērķis nav tikai nonākt līdz nākamajam pieturpunktam kartē, bet arī ikdienā kustēties vairāk: izvēlēties pastaigu, kāpnes, īsu izkustēšanos pusdienlaikā vai garāku maršrutu mājup.
+    </p>
+
+    <div className="illustratedStepsGrid">
+      <InstructionStep
+        n="1"
+        title="Atver lietotni, kurā redzi savus soļus"
+        text={
+          <>
+            <b>iPhone:</b> Health / Veselība → Browse / Pārlūkot → Activity / Aktivitāte → Steps / Soļi.
+            <br />
+            <br />
+            <b>Android:</b> atver savu aktivitāšu lietotni, piemēram, Samsung Health, Google Fit, Fitbit vai citu soļu lietotni, un atrodi sadaļu Steps / Soļi.
+          </>
+        }
+        illustration={<PhoneStepsIllustration />}
+      />
+
+      <InstructionStep
+        n="2"
+        title="Atrodi nedēļas soļu skaitu"
+        text="Apskati soļu skaitu par periodu no pirmdienas līdz svētdienai. Daudzas ierīces un lietotnes nedēļas kopējo soļu skaitu rāda automātiski. Ja redzi tikai dienu rezultātus, saskaiti kopā visu septiņu dienu soļus."
+        illustration={<WeekStepsIllustration />}
+      />
+
+      <InstructionStep
+        n="3"
+        title="Iesniedz kopējo skaitu anketā"
+        text="Spied pogu “Iesniegt soļus” un Microsoft Forms anketā ievadi savu nodaļu un nedēļas kopējo soļu skaitu. Iesniedzējs tiek reģistrēts automātiski, tāpēc vārds atsevišķi nav jāievada. Soļu laukā raksti tikai skaitli."
+        illustration={<FormIllustration />}
+      />
+
+      <InstructionStep
+        n="4"
+        title="Seko līdzi progresam un kusties vairāk"
+        text="Pirmdienās dati tiek atjaunoti šajā lapā. Katrs iesniegtais rezultāts papildina kopējo 25 miljonu soļu mērķi, individuālo reitingu un nodaļas rezultātu."
+        illustration={<ProgressIllustration />}
+      />
+    </div>
+
+    <div className="instructionNote">
+      <b>Svarīgi:</b>
+      <span>
+        Katrs solis ir svarīgs. Izaicinājuma mērķis ir gan sasniegt kopīgos pieturpunktus, gan ikdienā kustēties vairāk, justies labāk un stiprināt veselīgākus paradumus.
+      </span>
+    </div>
+  </div>
+</section>
         </section>
       </div>
     </main>
@@ -782,5 +824,137 @@ function Step({ n, title, text }) {
       <h3>{title}</h3>
       <p>{text}</p>
     </div>
+  );
+}
+function InstructionStep({ n, title, text, illustration }) {
+  return (
+    <div className="instructionStepCard">
+      <div className="instructionStepTop">
+        <b>{n}</b>
+        <h3>{title}</h3>
+      </div>
+
+      <p>{text}</p>
+
+      <div className="instructionIllustration">
+        {illustration}
+      </div>
+    </div>
+  );
+}
+
+function PhoneStepsIllustration() {
+  return (
+    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
+      <rect x="26" y="18" width="122" height="184" rx="20" fill="#123B63" />
+      <rect x="38" y="36" width="98" height="148" rx="10" fill="#FFFFFF" />
+      <rect x="68" y="28" width="38" height="6" rx="3" fill="#0F2F50" />
+
+      <rect x="52" y="54" width="72" height="24" rx="6" fill="#eef3f9" />
+      <text x="66" y="70" fontSize="10" fill="#123B63" fontWeight="700">Health</text>
+
+      <text x="56" y="102" fontSize="10" fill="#123B63">Browse →</text>
+      <text x="56" y="128" fontSize="10" fill="#123B63">Activity →</text>
+      <text x="56" y="154" fontSize="10" fill="#123B63">Steps</text>
+
+      <rect x="184" y="46" width="140" height="128" rx="14" fill="#f8fbff" stroke="#d8e2ee" />
+      <text x="222" y="70" fontSize="13" fill="#123B63" fontWeight="800">Android</text>
+
+      <circle cx="208" cy="98" r="9" fill="#7bbf6a" />
+      <text x="224" y="102" fontSize="10" fill="#123B63">Samsung Health</text>
+
+      <circle cx="208" cy="124" r="9" fill="#37b4c5" />
+      <text x="224" y="128" fontSize="10" fill="#123B63">Google Fit</text>
+
+      <circle cx="208" cy="150" r="9" fill="#123B63" />
+      <text x="224" y="154" fontSize="10" fill="#123B63">Steps / Soļi</text>
+
+      <path d="M151 110 C165 110 170 110 184 110" fill="none" stroke="#9fb3c8" strokeWidth="2" strokeDasharray="4 4" />
+    </svg>
+  );
+}
+
+function WeekStepsIllustration() {
+  const days = [
+    ["P", 8520, 42],
+    ["O", 9310, 48],
+    ["T", 7650, 38],
+    ["C", 10240, 56],
+    ["Pk", 8980, 45],
+    ["S", 12130, 66],
+    ["Sv", 9170, 47],
+  ];
+
+  return (
+    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
+      <rect x="26" y="28" width="308" height="112" rx="12" fill="#FFFFFF" stroke="#d8e2ee" />
+      <text x="116" y="52" fontSize="13" fill="#123B63" fontWeight="800">Pirmdiena – Svētdiena</text>
+
+      {days.map(([day, steps, height], index) => {
+        const x = 54 + index * 38;
+        return (
+          <g key={day}>
+            <text x={x} y="80" fontSize="11" fill="#123B63" fontWeight="800">{day}</text>
+            <text x={x - 8} y="99" fontSize="8" fill="#64748b">{steps}</text>
+            <rect x={x - 4} y={124 - height} width="16" height={height} rx="4" fill="#cfe0f2" />
+          </g>
+        );
+      })}
+
+      <rect x="54" y="156" width="252" height="46" rx="12" fill="#f8fbff" stroke="#d8e2ee" />
+      <circle cx="86" cy="179" r="17" fill="#123B63" />
+      <text x="115" y="174" fontSize="12" fill="#64748b">Nedēļas kopējais soļu skaits</text>
+      <text x="136" y="195" fontSize="26" fill="#123B63" fontWeight="900">65 000</text>
+    </svg>
+  );
+}
+
+function FormIllustration() {
+  return (
+    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
+      <rect x="76" y="28" width="208" height="170" rx="12" fill="#FFFFFF" stroke="#123B63" strokeWidth="6" />
+      <rect x="134" y="18" width="92" height="30" rx="8" fill="#5d6f82" />
+      <circle cx="180" cy="20" r="8" fill="#f4f7fb" />
+
+      <text x="124" y="70" fontSize="16" fill="#123B63" fontWeight="900">Iesniegt soļus</text>
+
+      <text x="96" y="100" fontSize="10" fill="#123B63" fontWeight="700">Nodaļa</text>
+      <rect x="96" y="106" width="168" height="24" rx="5" fill="#f8fbff" stroke="#d8e2ee" />
+      <text x="106" y="122" fontSize="9" fill="#64748b">Komunikācijas nodaļa</text>
+
+      <text x="96" y="146" fontSize="10" fill="#123B63" fontWeight="700">Soļu skaits nedēļā</text>
+      <rect x="96" y="152" width="168" height="24" rx="5" fill="#f8fbff" stroke="#d8e2ee" />
+      <text x="106" y="168" fontSize="9" fill="#64748b">65000</text>
+
+      <rect x="96" y="184" width="168" height="26" rx="5" fill="#123B63" />
+      <text x="145" y="202" fontSize="11" fill="#FFFFFF" fontWeight="800">Iesniegt</text>
+    </svg>
+  );
+}
+
+function ProgressIllustration() {
+  return (
+    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
+      <rect x="28" y="34" width="160" height="78" rx="10" fill="#FFFFFF" stroke="#d8e2ee" />
+      <text x="44" y="58" fontSize="10" fill="#123B63" fontWeight="900">KOPĪGAIS MĒRĶIS</text>
+      <text x="44" y="82" fontSize="18" fill="#123B63" fontWeight="900">25 000 000</text>
+      <text x="144" y="82" fontSize="10" fill="#123B63">soļu</text>
+
+      <rect x="44" y="94" width="120" height="12" rx="6" fill="#dbe4ef" />
+      <rect x="44" y="94" width="75" height="12" rx="6" fill="#7bbf6a" />
+      <text x="170" y="104" fontSize="10" fill="#123B63">62%</text>
+
+      <path d="M224 62 L245 48 L268 62 L291 54 L316 72 L307 96 L278 94 L257 105 L235 94 Z" fill="none" stroke="#9E3039" strokeWidth="3" />
+      <circle cx="277" cy="76" r="5" fill="#9E3039" />
+
+      <path d="M66 164 C92 138 119 148 144 130 C174 108 210 134 238 112 C262 94 288 106 310 86" fill="none" stroke="#123B63" strokeWidth="3" strokeDasharray="5 5" />
+      <path d="M282 132 L322 92 L312 136" fill="none" stroke="#7bbf6a" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+
+      <circle cx="120" cy="164" r="11" fill="#123B63" />
+      <path d="M120 176 L112 198 M120 176 L132 196 M118 182 L98 176 M122 182 L142 176" stroke="#123B63" strokeWidth="5" strokeLinecap="round" />
+
+      <circle cx="190" cy="156" r="11" fill="#37b4c5" />
+      <path d="M190 168 L182 198 M190 168 L204 194 M187 176 L166 170 M194 176 L215 166" stroke="#37b4c5" strokeWidth="5" strokeLinecap="round" />
+    </svg>
   );
 }
