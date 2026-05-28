@@ -260,8 +260,6 @@ export default function App(){
   const participantCount = walkers.filter((w) => w.steps > 0).length;
   const stepsUntilNext = Math.max(0, next.steps - currentSteps);
 
-  const embedCode = `<iframe src="https://tava-lapa.lv/progress" width="100%" height="260" style="border:0;" title="Regulatora soļu izaicinājuma progress"></iframe>`;
-
   return (
     <main>
       <div className="page">
@@ -402,30 +400,17 @@ export default function App(){
             )}
           </div>
         </section>
-
-        <section className="contentGrid lower">
-          <div className="card">
-            <h2>Regnet embed kods progress skalai</h2>
-            <p className="muted">Šo kodu var izmantot, lai Regnet lapā ieliktu mazo progress bloku ar aktuālo noieto soļu skaitu, mērķa skalu un atgādinājumu.</p>
-            <div className="embedPreview">
-              <b>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</b>
-              <div className="simpleBar"><div style={{width: `${progress}%`}} /></div>
-              <p>{progress}% no mērķa sasniegti · Mērķis: {format(GOAL)} soļu</p>
-              <small>Progress tiek atjaunots pirmdienās. Lūdzu iesūti soļus līdz svētdienas beigām.</small>
-            </div>
-            <textarea readOnly value={embedCode}></textarea>
-          </div>
-
-          <div className="card" id="ka-piedalities">
-            <h2>Kā piedalīties un iesniegt savus soļus</h2>
-            <div className="stepsGrid">
-              <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni."/>
-              <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu."/>
-<Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu."/>
-              <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu."/>
-            </div>
-          </div>
-        </section>
+<section className="contentGrid lower instructionsOnly">
+  <div className="card instructionCard" id="ka-piedalities">
+    <h2>Kā piedalīties un iesniegt savus soļus</h2>
+    <div className="stepsGrid">
+      <Step n="1" title="Atver savu soļu lietotni" text="Apple Health, Samsung Health, Garmin, Fitbit, Google Fit vai citu lietotni."/>
+      <Step n="2" title="Pārbaudi nedēļas soļu skaitu" text="Pārliecinies, ka redzi pareizo nedēļas periodu un kopējo soļu skaitu."/>
+      <Step n="3" title="Aizpildi anketu" text="Ievadi nedēļas soļu skaitu. Organizatori nepieciešamības gadījumā var lūgt precizējošu ekrānšāviņu."/>
+      <Step n="4" title="Palīdzi sasniegt checkpointus" text="Katrs iesniegtais solis papildina kopējo progresu."/>
+    </div>
+  </div>
+</section>
       </div>
     </main>
   );
