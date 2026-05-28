@@ -130,7 +130,7 @@ textarea{width:100%;height:120px;border:1px solid var(--border);padding:12px;fon
     grid-template-columns: 1fr;
   }
 }
-}
+
 /* --- Lielāks, plašāks sākumskats --- */
 
 .page {
@@ -287,5 +287,63 @@ h1 {
 
   .progressBadge {
     font-size: 26px;
+  }
+}
+
+/* --- Instrukciju bloks visā platumā --- */
+
+.contentGrid.instructionsOnly {
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.contentGrid.instructionsOnly .instructionCard {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.instructionCard {
+  padding: 36px 42px;
+}
+
+.instructionCard h2 {
+  font-size: 38px;
+  margin: 0 0 28px;
+}
+
+.instructionCard .stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.instructionCard .stepCard {
+  min-height: 190px;
+  padding: 24px;
+}
+
+.instructionCard .stepCard h3 {
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.instructionCard .stepCard p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .instructionCard .stepsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .instructionCard {
+    padding: 26px;
+  }
+
+  .instructionCard .stepsGrid {
+    grid-template-columns: 1fr;
   }
 }
