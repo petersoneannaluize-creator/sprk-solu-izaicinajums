@@ -9,12 +9,12 @@ const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
   { steps: 50000, icon: "🚶", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
-  { steps: 500000, icon: "🇱🇻", title: "Apiets apkārt Latvijai" },
+  { steps: 500000,icon: "LV", iconType: "badge", title: "Apiets apkārt Latvijai" },
   { steps: 1000000, icon: "🌊", title: "Noieta Daugava visā tās garumā" },
   { steps: 2000000, icon: "🐚", title: "Noiets Camino de Santiago" },
   { steps: 3000000, icon: "🧱", title: "Noiets Ķīnas mūris" },
   { steps: 7000000, icon: "⚓", title: "Apiets apkārt Baltijas jūrai" },
-  { steps: 12000000, icon: "🇪🇺", title: "Apiets apkārt Eiropai" },
+  { steps: 12000000, icon: "ES", iconType: "badge", title: "Apiets apkārt Eiropai" },
   { steps: 15000000, icon: "🏜️", title: "Noieta Nīla visā tās garumā" },
   { steps: 20000000, icon: "🏔️", title: "Šķērsota Eirāzija" },
   { steps: 25000000, icon: "🌍", title: "Nostaigāta gandrīz puse pasaules" },
@@ -176,7 +176,13 @@ function cleanSteps(value) {
 function pluralParticipants(count) {
   return count === 1 ? "dalībnieks" : "dalībnieki";
 }
+function CheckpointIcon({ checkpoint }) {
+  if (checkpoint.iconType === "badge") {
+    return <span className="checkpointBadgeIcon">{checkpoint.icon}</span>;
+  }
 
+  return <span>{checkpoint.icon}</span>;
+}
 export default function App() {
   const [submissions, setSubmissions] = useState([]);
 
@@ -354,7 +360,7 @@ export default function App() {
             <div>
               <p>Nākamais sasniedzamais mērķis</p>
               <h3>
-                {next.icon} {next.title}
+                <CheckpointIcon checkpoint={next} /> {{next.title}
               </h3>
             </div>
 
@@ -372,7 +378,9 @@ export default function App() {
                     <span className="question">?</span>
                   ) : (
                     <>
-                      <div className="cpIcon">{c.icon}</div>
+                      <div className="cpIcon">
+  <CheckpointIcon checkpoint={c} />
+</div>
                       <b>{format(c.steps)} soļu</b>
                       <p>{c.title}</p>
                     </>
@@ -400,7 +408,8 @@ export default function App() {
         <section className="summaryGrid">
           <div className="summaryCard next">
             <p>📍 Nākamais sasniedzamais mērķis</p>
-            <div className="nextIcon">{next.icon}</div>
+            <div className="nextIcon">
+  <CheckpointIcon checkpoint={next} /> </div>
             <h2>{next.title}</h2>
             <span>Vēl {format(stepsUntilNext)} soļi līdz sasniegšanai</span>
           </div>
@@ -578,7 +587,7 @@ function ProgressEmbed({ currentSteps, goal, progress, next, stepsUntilNext }) {
         <div className="embedNext">
           <span>Nākamais mērķis</span>
           <b>
-            {next.icon} {next.title}
+           <CheckpointIcon checkpoint={next} /> {next.title}
           </b>
           <strong>Vēl {format(stepsUntilNext)} soļi</strong>
         </div>
