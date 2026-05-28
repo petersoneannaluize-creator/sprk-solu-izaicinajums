@@ -360,7 +360,7 @@ export default function App() {
             <div>
               <p>Nākamais sasniedzamais mērķis</p>
               <h3>
-                <CheckpointIcon checkpoint={next} /> {{next.title}
+                <CheckpointIcon checkpoint={next} /> {next.title}
               </h3>
             </div>
 
