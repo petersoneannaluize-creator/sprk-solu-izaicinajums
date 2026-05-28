@@ -414,11 +414,10 @@ export default function App() {
 
             <p className="lead">
               🎉 Svinot Regulatora 25 gadu jubileju, aicinām darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā kopā noiet 25 miljonus soļu! 👣
-              Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu, kas ir bijuši iepriekšējās nedēļas aktīvākie staigātāji un kuri kolēģi ir vislielākie staigātāji!
-            </p>
+              Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu un kas ir bijuši iepriekšējās nedēļas aktīvākie staigātāji. Mērķis ir ne vien vairāk kustēties, bet arī mums kopīgi sasniegt (šoreiz gan – virtuāli) dažādas virsotnes, pabūt dažādās pasaules malās un simboliski atzīmēt Regulatora dzimšanas dienu.
 
             <p className="lead smaller">
-              Soļus kopskaitu – pēdējās 7 dienas – jāiesniedz svētdienā, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu. 
+              Soļus kopskaitu par pēdējām 7 dienām jāiesniedz līdz svētdienas vakaram, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu. 
               Ja ar to vajag palīdzību – droši, raksti vai ziņo man, komunikācijas speciālistei Annai, un es ar prieku palīdzēšu!
 </p>
 </div>
