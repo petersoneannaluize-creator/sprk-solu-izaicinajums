@@ -8,16 +8,16 @@ const DATA_URL = "/data.json";
 const submitFormUrl = "https://forms.office.com/";
 
 const checkpoints = [
-  { steps: 50000, icon: "🚶", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
-  { steps: 500000,icon: "LV", iconType: "badge", title: "Apiets apkārt Latvijai" },
-  { steps: 1000000, icon: "🌊", title: "Noieta Daugava visā tās garumā" },
-  { steps: 2000000, icon: "🐚", title: "Noiets Camino de Santiago" },
-  { steps: 3000000, icon: "🧱", title: "Noiets Ķīnas mūris" },
-  { steps: 7000000, icon: "⚓", title: "Apiets apkārt Baltijas jūrai" },
-  { steps: 12000000, icon: "ES", iconType: "badge", title: "Apiets apkārt Eiropai" },
-  { steps: 15000000, icon: "🏜️", title: "Noieta Nīla visā tās garumā" },
-  { steps: 20000000, icon: "🏔️", title: "Šķērsota Eirāzija" },
-  { steps: 25000000, icon: "🌍", title: "Nostaigāta gandrīz puse pasaules" },
+  { steps: 50000, icon: "walk", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
+  { steps: 500000, icon: "latvia", title: "Apiets apkārt Latvijai" },
+  { steps: 1000000, icon: "river", title: "Noieta Daugava visā tās garumā" },
+  { steps: 2000000, icon: "shell", title: "Noiets Camino de Santiago" },
+  { steps: 3000000, icon: "wall", title: "Noiets Ķīnas mūris" },
+  { steps: 7000000, icon: "anchor", title: "Apiets apkārt Baltijas jūrai" },
+  { steps: 12000000, icon: "eu", title: "Apiets apkārt Eiropai" },
+  { steps: 15000000, icon: "desert", title: "Noieta Nīla visā tās garumā" },
+  { steps: 20000000, icon: "mountain", title: "Šķērsota Eirāzija" },
+  { steps: 25000000, icon: "globe", title: "Nostaigāta gandrīz puse pasaules" },
 ];
 
 const employees = [
@@ -176,13 +176,73 @@ function cleanSteps(value) {
 function pluralParticipants(count) {
   return count === 1 ? "dalībnieks" : "dalībnieki";
 }
-function CheckpointIcon({ checkpoint }) {
-  if (checkpoint.iconType === "badge") {
-    return <span className="checkpointBadgeIcon">{checkpoint.icon}</span>;
-  }
 
-  return <span>{checkpoint.icon}</span>;
+function CheckpointIcon({ checkpoint }) {
+  switch (checkpoint.icon) {
+    case "latvia":
+      return <LatviaFlagIcon />;
+    case "eu":
+      return <EUFlagIcon />;
+    case "walk":
+      return <span className="emojiIcon">🚶</span>;
+    case "river":
+      return <span className="emojiIcon">🌊</span>;
+    case "shell":
+      return <span className="emojiIcon">🐚</span>;
+    case "wall":
+      return <span className="emojiIcon">🧱</span>;
+    case "anchor":
+      return <span className="emojiIcon">⚓</span>;
+    case "desert":
+      return <span className="emojiIcon">🏜️</span>;
+    case "mountain":
+      return <span className="emojiIcon">🏔️</span>;
+    case "globe":
+      return <span className="emojiIcon">🌍</span>;
+    default:
+      return <span className="emojiIcon">📍</span>;
+  }
 }
+
+function LatviaFlagIcon() {
+  return (
+    <span className="flagIcon" aria-label="Latvijas karogs" title="Latvija">
+      <svg viewBox="0 0 36 24" className="flagSvg" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="24" rx="4" fill="#9E3039" />
+        <rect y="9" width="36" height="6" fill="#FFFFFF" />
+      </svg>
+    </span>
+  );
+}
+
+function EUFlagIcon() {
+  const stars = [
+    [18, 6],
+    [22.5, 7.2],
+    [25.8, 10.5],
+    [27, 15],
+    [25.8, 18.5],
+    [22.5, 21],
+    [18, 22],
+    [13.5, 21],
+    [10.2, 18.5],
+    [9, 15],
+    [10.2, 10.5],
+    [13.5, 7.2],
+  ];
+
+  return (
+    <span className="flagIcon" aria-label="Eiropas Savienības karogs" title="Eiropas Savienība">
+      <svg viewBox="0 0 36 24" className="flagSvg" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="24" rx="4" fill="#1E4FA1" />
+        {stars.map(([cx, cy], index) => (
+          <circle key={index} cx={cx} cy={cy} r="1" fill="#FFD84D" />
+        ))}
+      </svg>
+    </span>
+  );
+}
+
 export default function App() {
   const [submissions, setSubmissions] = useState([]);
 
@@ -379,8 +439,8 @@ export default function App() {
                   ) : (
                     <>
                       <div className="cpIcon">
-  <CheckpointIcon checkpoint={c} />
-</div>
+                        <CheckpointIcon checkpoint={c} />
+                      </div>
                       <b>{format(c.steps)} soļu</b>
                       <p>{c.title}</p>
                     </>
@@ -409,7 +469,8 @@ export default function App() {
           <div className="summaryCard next">
             <p>📍 Nākamais sasniedzamais mērķis</p>
             <div className="nextIcon">
-  <CheckpointIcon checkpoint={next} /> </div>
+              <CheckpointIcon checkpoint={next} />
+            </div>
             <h2>{next.title}</h2>
             <span>Vēl {format(stepsUntilNext)} soļi līdz sasniegšanai</span>
           </div>
@@ -587,7 +648,7 @@ function ProgressEmbed({ currentSteps, goal, progress, next, stepsUntilNext }) {
         <div className="embedNext">
           <span>Nākamais mērķis</span>
           <b>
-           <CheckpointIcon checkpoint={next} /> {next.title}
+            <CheckpointIcon checkpoint={next} /> {next.title}
           </b>
           <strong>Vēl {format(stepsUntilNext)} soļi</strong>
         </div>
