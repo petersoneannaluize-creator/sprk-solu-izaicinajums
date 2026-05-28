@@ -964,3 +964,138 @@ h1 {
 .cpIcon .emojiIcon {
   font-size: 28px;
 }
+/* --- Ilustrētā instrukciju sadaļa --- */
+
+.illustratedInstructionCard {
+  overflow: hidden;
+}
+
+.instructionIntro {
+  max-width: 1050px;
+  margin: -8px 0 28px;
+  color: #53606f;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.illustratedStepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.instructionStepCard {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  padding: 24px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+
+.instructionStepTop {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+.instructionStepTop > b {
+  width: 38px;
+  height: 38px;
+  background: var(--blue);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.instructionStepTop h3 {
+  margin: 0;
+  color: var(--blue);
+  font-size: 21px;
+  line-height: 1.22;
+}
+
+.instructionStepCard p {
+  margin: 0;
+  color: #53606f;
+  font-size: 15.5px;
+  line-height: 1.48;
+}
+
+.instructionStepCard p b {
+  color: var(--blue);
+}
+
+.instructionIllustration {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.instructionSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.instructionNote {
+  margin-top: 26px;
+  background: var(--light);
+  border: 1px solid rgba(18,59,99,.15);
+  padding: 18px 20px;
+  color: #53606f;
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.instructionNote b {
+  color: var(--blue);
+  white-space: nowrap;
+}
+
+.instructionNote span {
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  .illustratedStepsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instructionStepCard {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 640px) {
+  .instructionIntro {
+    font-size: 16px;
+  }
+
+  .illustratedStepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .instructionStepCard {
+    min-height: auto;
+  }
+
+  .instructionStepTop {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .instructionStepTop h3 {
+    font-size: 19px;
+  }
+
+  .instructionNote {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
