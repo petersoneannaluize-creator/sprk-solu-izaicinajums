@@ -419,8 +419,7 @@ export default function App() {
 
             <p className="lead smaller">
               Soļus kopskaitu – pēdējās 7 dienas – jāiesniedz svētdienā, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu. 
-              Pievienot soļus ir pavisam vienkārši – nav papildus aplikācijas vai sarežģīta sistēma. Svētdienas vakarā apskati savā viedierīcē noieto soļu skaitu par pēdējo nedēļu (pirmdiena – svētdiena) un ievadi kopējo soļu skaitu anketā. Tas arī viss! 
-              Detalizētāku informāciju, kā to izdarīt, skati lapas beigās. Ja vajag palīdzību – droši, raksti vai ziņo man, komunikācijas speciālistei Annai, ar prieku palīdzēšu!
+              Ja ar to vajag palīdzību – droši, raksti vai ziņo man, komunikācijas speciālistei Annai, un es ar prieku palīdzēšu!
 </p>
 </div>
 
