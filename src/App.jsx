@@ -15,7 +15,7 @@ const checkpoints = [
   { steps: 3000000, icon: "wall", title: "Noiets Ķīnas mūris" },
   { steps: 7000000, icon: "anchor", title: "Apiesim apkārt Baltijas jūras līcim" },
   { steps: 12000000, icon: "eu", title: "Apiesim apkārt Eiropai" },
-  { steps: 15000000, icon: "desert", title: "Noiesim upi "Nīla" visā tās garumā" },
+  { steps: 15000000, icon: "desert", title: "Noiesim upi Nīla visā tās garumā" },
   { steps: 20000000, icon: "mountain", title: "Šķērsojam kontintentu – Eirāzija" },
   { steps: 25000000, icon: "globe", title: "Nostaigāsim gandrīz pusi pasaules" },
 ];
@@ -420,8 +420,9 @@ export default function App() {
             <p className="lead smaller">
               Soļus kopskaitu – pēdējās 7 dienas – jāiesniedz svētdienā, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu. 
               Pievienot soļus ir pavisam vienkārši – nav papildus aplikācijas vai sarežģīta sistēma. Svētdienas vakarā apskati savā viedierīcē noieto soļu skaitu par pēdējo nedēļu (pirmdiena – svētdiena) un ievadi kopējo soļu skaitu anketā. Tas arī viss! 
-              Detalizētāku informāciju, kā to izdarīt, skati lapas beigās. Ja vajag palīdzību – droši, raksti vai ziņo man, komunikācijas speciālsitei Annai, ar prieku palīdzēšu!
-          </div>
+              Detalizētāku informāciju, kā to izdarīt, skati lapas beigās. Ja vajag palīdzību – droši, raksti vai ziņo man, komunikācijas speciālistei Annai, ar prieku palīdzēšu!
+</p>
+</div>
 
           <div>
             <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
