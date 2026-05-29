@@ -419,7 +419,7 @@ export default function App() {
 
   <p className="lead smaller">
     Soļu kopskaits par pēdējām 7 dienām jāiesniedz līdz svētdienas vakaram, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
-    Ja ar to vajag palīdzību – droši raksti vai ziņo komunikācijas speciālistei Annai, un viņa ar prieku palīdzēs!
+    Ja ar to vajag palīdzību – droši raksti vai ziņo komunikācijas speciālistei Annai, un viņa ar prieku palīdzēs! 
   </p>
 
 </div>
