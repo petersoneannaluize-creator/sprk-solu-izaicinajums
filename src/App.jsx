@@ -475,10 +475,13 @@ export default function App() {
             })}
           </div>
 
-          <div className="notice">
-            <b>Soļu progress tiek atjaunots reizi nedēļā — pirmdienu rītos.</b>
-            <span>Darbinieki aicināti iesūtīt savu soļu skaitu līdz katras svētdienas beigām.</span>
-          </div>
+         <div className="notice deadlineNotice">
+  <b>⏰ Soļu kopskaits jāiesniedz katru pirmdienu līdz plkst. 11.00.</b>
+  <span>
+    Pēc iesniegto datu apkopošanas pirmdienās šajā lapā tiek atjaunots kopējais progress,
+    individuālais reitings un nodaļu rezultāti.
+  </span>
+</div>
 
           <div className="heroActions">
             <a className="button" href={submitFormUrl} target="_blank" rel="noreferrer">
@@ -688,12 +691,14 @@ export default function App() {
               </div>
             </div>
 
-            <div className="instructionNote">
-              <b>Svarīgi:</b>
-              <span>
-                Katrs solis ir svarīgs. Izaicinājuma mērķis ir gan sasniegt kopīgos pieturpunktus, gan ikdienā kustēties vairāk, justies labāk un stiprināt veselīgākus paradumus.
-              </span>
-            </div>
+            <div className="instructionNote instructionDeadlineNote">
+  <b>Svarīgi:</b>
+  <span>
+    Soļu kopskaits jāiesniedz katru pirmdienu līdz plkst. 11.00. Katrs solis ir svarīgs —
+    izaicinājuma mērķis ir gan sasniegt kopīgos pieturpunktus, gan ikdienā kustēties vairāk,
+    justies labāk un stiprināt veselīgākus paradumus.
+  </span>
+</div>
           </div>
         </section>
       </div>
