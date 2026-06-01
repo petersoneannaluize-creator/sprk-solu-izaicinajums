@@ -409,7 +409,7 @@ export default function App() {
             </p>
 
             <p className="lead smaller">
-              Soļu kopskaits par pēdējām 7 dienām (pirmdiena – svētdiena_ jāiesniedz līdz katras pirmdienas plkst. 11.00, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
+              Soļu kopskaits par soļu kopskaitu no pirmdienas līdz svētdienai jāiesniedz līdz katras pirmdienas plkst. 11.00, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
               Ja ar to vajag palīdzību, droši raksti vai ziņo Annai, un viņa ar prieku palīdzēs! Epasts saziņai: anna.petersone@sprk.gov.lv vai meklē Teams Anna Pētersone.
             </p>
           </div>
