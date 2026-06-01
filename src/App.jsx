@@ -5,7 +5,7 @@ import journeyImage from "./sprk-celojums.png";
 
 const GOAL = 25000000;
 const DATA_URL = "/data.json";
-const submitFormUrl = "https://forms.office.com/";
+const submitFormUrl = "https://forms.office.com/e/EPmKCNTLJg";
 
 const checkpoints = [
   { steps: 50000, icon: "walk", title: "Pirmie 50 (tūkstoši) – jubilejas starts" },
