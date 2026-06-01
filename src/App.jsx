@@ -405,12 +405,12 @@ export default function App() {
 
             <p className="lead">
               🎉 Svinot Regulatora 25 gadu jubileju, aicinām darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā kopā noiet 25 miljonus soļu! 👣
-              Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu un to, kuri bijuši iepriekšējās nedēļas aktīvākie staigātāji. Mērķis ir ne vien vairāk kustēties, bet arī mums kopīgi sasniegt — šoreiz gan virtuāli — dažādas virsotnes, pabūt dažādās pasaules malās un simboliski atzīmēt Regulatora dzimšanas dienu.
+              Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu un to, kuri bijuši iepriekšējās nedēļas aktīvākie staigātāji. Mērķis ir ne vien vairāk kustēties, bet arī mums kopīgi sasniegt – šoreiz gan virtuāli – dažādas virsotnes, pabūt dažādās pasaules malās un simboliski atzīmēt Regulatora dzimšanas dienu.
             </p>
 
             <p className="lead smaller">
-              Soļu kopskaits par pēdējām 7 dienām jāiesniedz līdz svētdienas vakaram, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
-              Ja ar to vajag palīdzību – droši raksti vai ziņo komunikācijas speciālistei Annai, un viņa ar prieku palīdzēs!
+              Soļu kopskaits par pēdējām 7 dienām (pirmdiena – svētdiena_ jāiesniedz līdz katras pirmdienas plkst. 11.00, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
+              Ja ar to vajag palīdzību, droši raksti vai ziņo Annai, un viņa ar prieku palīdzēs! Epasts saziņai: anna.petersone@sprk.gov.lv vai meklē Teams Anna Pētersone.
             </p>
           </div>
 
