@@ -13,10 +13,10 @@ const checkpoints = [
   { steps: 1000000, icon: "river", title: "Noiesim Daugavu visā tās garumā" },
   { steps: 2000000, icon: "shell", title: "Noiesim Camino de Santiago ceļu" },
   { steps: 3000000, icon: "wall", title: "Noiets Ķīnas mūris" },
-  { steps: 7000000, icon: "anchor", title: "Apiesim apkārt Baltijas jūras līcim" },
+  { steps: 7000000, icon: "anchor", title: "Apiesim apkārt Baltijas jūrai" },
   { steps: 12000000, icon: "eu", title: "Apiesim apkārt Eiropai" },
   { steps: 15000000, icon: "desert", title: "Noiesim upi Nīla visā tās garumā" },
-  { steps: 20000000, icon: "mountain", title: "Šķērsojam kontintentu – Eirāzija" },
+  { steps: 20000000, icon: "mountain", title: "Šķērsojam kontinentu – Eirāzija" },
   { steps: 25000000, icon: "globe", title: "Nostaigāsim gandrīz pusi pasaules" },
 ];
 
@@ -164,7 +164,7 @@ function getWeekKey(date) {
   d.setUTCDate(d.getUTCDate() + 4 - dayNum);
 
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  const weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
 
   return `${d.getUTCFullYear()}-${String(weekNo).padStart(2, "0")}`;
 }
@@ -207,12 +207,7 @@ function CheckpointIcon({ checkpoint }) {
 function LatviaShapeIcon() {
   return (
     <span className="latviaIcon" aria-label="Latvijas kontūra" title="Latvija">
-      <svg
-        viewBox="0 0 498 299"
-        className="latviaSvg"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-      >
+      <svg viewBox="0 0 498 299" className="latviaSvg" xmlns="http://www.w3.org/2000/svg" role="img">
         <defs>
           <clipPath id="latviaRealClip">
             <path d="M 489 191 L 465 138 L 449 131 L 454 87 L 431 58 L 400 51 L 355 55 L 332 28 L 313 26 L 286 8 L 275 8 L 217 36 L 223 103 L 213 125 L 199 136 L 176 132 L 157 100 L 134 80 L 118 55 L 104 54 L 84 67 L 56 73 L 39 102 L 33 141 L 13 169 L 8 246 L 18 262 L 35 263 L 58 237 L 85 226 L 139 228 L 147 234 L 202 226 L 216 239 L 270 230 L 274 241 L 303 241 L 326 250 L 365 287 L 392 290 L 414 275 L 457 265 L 464 241 L 487 217 Z" />
@@ -264,11 +259,7 @@ function EUFlagIcon() {
         <rect width="36" height="24" rx="4" fill="#1E4FA1" />
 
         {stars.map((star, index) => (
-          <polygon
-            key={index}
-            points={makeStarPoints(star.x, star.y)}
-            fill="#FFD84D"
-          />
+          <polygon key={index} points={makeStarPoints(star.x, star.y)} fill="#FFD84D" />
         ))}
       </svg>
     </span>
@@ -408,21 +399,20 @@ export default function App() {
         </nav>
 
         <section className="heroShell">
-         <div className="heroText">
-  <p className="eyebrow">25 gadi · 25 miljoni soļu</p>
-  <h1>Regulatora soļu izaicinājums</h1>
+          <div className="heroText">
+            <p className="eyebrow">25 gadi · 25 miljoni soļu</p>
+            <h1>Regulatora soļu izaicinājums</h1>
 
-  <p className="lead">
-    🎉 Svinot Regulatora 25 gadu jubileju, aicinām darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā kopā noiet 25 miljonus soļu! 👣
-    Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu un to, kuri bijuši iepriekšējās nedēļas aktīvākie staigātāji. Mērķis ir ne vien vairāk kustēties, bet arī mums kopīgi sasniegt — šoreiz gan virtuāli — dažādas virsotnes, pabūt dažādās pasaules malās un simboliski atzīmēt Regulatora dzimšanas dienu.
-  </p>
+            <p className="lead">
+              🎉 Svinot Regulatora 25 gadu jubileju, aicinām darbiniekus pievienoties kopīgam soļu izaicinājumam – jubilejas gadā kopā noiet 25 miljonus soļu! 👣
+              Šajā lapā atradīsi katras nodaļas progresu, kopējo noeieto soļu skaitu un to, kuri bijuši iepriekšējās nedēļas aktīvākie staigātāji. Mērķis ir ne vien vairāk kustēties, bet arī mums kopīgi sasniegt — šoreiz gan virtuāli — dažādas virsotnes, pabūt dažādās pasaules malās un simboliski atzīmēt Regulatora dzimšanas dienu.
+            </p>
 
-  <p className="lead smaller">
-    Soļu kopskaits par pēdējām 7 dienām jāiesniedz līdz svētdienas vakaram, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
-    Ja ar to vajag palīdzību – droši raksti vai ziņo komunikācijas speciālistei Annai, un viņa ar prieku palīdzēs! 
-  </p>
-
-</div>
+            <p className="lead smaller">
+              Soļu kopskaits par pēdējām 7 dienām jāiesniedz līdz svētdienas vakaram, lai pirmdienās Regulatora komunikācijas speciāliste Anna var šeit atjaunot kopējo progresu.
+              Ja ar to vajag palīdzību – droši raksti vai ziņo komunikācijas speciālistei Annai, un viņa ar prieku palīdzēs!
+            </p>
+          </div>
 
           <div>
             <img src={journeyImage} alt="Ceļojuma progress" className="journey-image" />
@@ -519,7 +509,7 @@ export default function App() {
             <h2>
               {reached}/{checkpoints.length}
             </h2>
-            <p>Sasniegtie mērķi </p>
+            <p>Sasniegtie mērķi</p>
           </div>
         </section>
 
@@ -637,76 +627,75 @@ export default function App() {
           </div>
         </section>
 
-      <section className="contentGrid lower instructionsOnly">
-  <div className="card instructionCard improvedInstructionCard" id="ka-piedalities">
-    <h2>Kā piedalīties un iesniegt savus soļus</h2>
+        <section className="contentGrid lower instructionsOnly">
+          <div className="card instructionCard improvedInstructionCard" id="ka-piedalities">
+            <h2>Kā piedalīties un iesniegt savus soļus</h2>
 
-    <p className="instructionIntro">
-      Šis izaicinājums ir par aktīvāku ikdienu un kopīgu mērķi — sasniegt 25 miljonus soļu Regulatora 25 gadu jubilejā.
-      Mērķis nav tikai nonākt līdz nākamajam pieturpunktam kartē, bet arī ikdienā kustēties vairāk:
-      iziet īsā pastaigā, izvēlēties kāpnes lifta vietā vai vienkārši biežāk izkustēties dienas laikā.
-    </p>
+            <p className="instructionIntro">
+              Šis izaicinājums ir par aktīvāku ikdienu un kopīgu mērķi — sasniegt 25 miljonus soļu Regulatora 25 gadu jubilejā.
+              Mērķis nav tikai nonākt līdz nākamajam pieturpunktam kartē, bet arī ikdienā kustēties vairāk:
+              iziet īsā pastaigā, izvēlēties kāpnes lifta vietā vai vienkārši biežāk izkustēties dienas laikā.
+            </p>
 
-    <div className="instructionStepsScroller">
-      <div className="improvedStepsRow">
-        <InstructionStep
-          n="1"
-          title="Atver lietotni, kurā redzi savus soļus"
-          text={
-            <>
-              <b>iPhone:</b> atver <b>Health / Veselība</b> lietotni. Ja soļi nav redzami sākumskatā, atver <b>Browse / Pārlūkot</b>, izvēlies <b>Activity / Aktivitāte</b> un pēc tam <b>Steps / Soļi</b>.
-              <br />
-              <br />
-              <b>Android:</b> atver lietotni, kurā ikdienā skaties aktivitātes, piemēram, <b>Samsung Health</b>, <b>Google Fit</b>, <b>Fitbit</b> vai citu soļu lietotni, un atrodi sadaļu <b>Steps / Soļi</b>.
-            </>
-          }
-          visual={<StepOneVisual />}
-        />
+            <div className="instructionStepsScroller">
+              <div className="improvedStepsRow">
+                <InstructionStep
+                  n="1"
+                  title="Atver lietotni, kurā redzi savus soļus"
+                  text={
+                    <>
+                      <b>iPhone:</b> atver <b>Health / Veselība</b> lietotni. Ja soļi nav redzami sākumskatā, atver <b>Browse / Pārlūkot</b>, izvēlies <b>Activity / Aktivitāte</b> un pēc tam <b>Steps / Soļi</b>.
+                      <br />
+                      <br />
+                      <b>Android:</b> atver lietotni, kurā ikdienā skaties aktivitātes, piemēram, <b>Samsung Health</b>, <b>Google Fit</b>, <b>Fitbit</b> vai citu soļu lietotni, un atrodi sadaļu <b>Steps / Soļi</b>.
+                    </>
+                  }
+                  visual={<StepOneVisual />}
+                />
 
-        <InstructionStep
-          n="2"
-          title="Atrodi nedēļas soļu skaitu"
-          text={
-            <>
-              Apskati soļu skaitu par periodu no <b>pirmdienas līdz svētdienai</b>. Daudzas ierīces un lietotnes nedēļas kopējo soļu skaitu rāda automātiski. Ja redzi katras dienas soļus atsevišķi, saskaiti kopā visu septiņu dienu rezultātus un iegūto kopsummu ievadi anketā.
-            </>
-          }
-          visual={<StepTwoVisual />}
-        />
+                <InstructionStep
+                  n="2"
+                  title="Atrodi nedēļas soļu skaitu"
+                  text={
+                    <>
+                      Apskati soļu skaitu par periodu no <b>pirmdienas līdz svētdienai</b>. Daudzas ierīces un lietotnes nedēļas kopējo soļu skaitu rāda automātiski. Ja redzi katras dienas soļus atsevišķi, saskaiti kopā visu septiņu dienu rezultātus un iegūto kopsummu ievadi anketā.
+                    </>
+                  }
+                  visual={<StepTwoVisual />}
+                />
 
-        <InstructionStep
-          n="3"
-          title="Iesniedz kopējo skaitu anketā"
-          text={
-            <>
-              Spied pogu <b>“Iesniegt soļus”</b> un Microsoft Forms anketā ievadi savu <b>nodaļu</b> un <b>nedēļas kopējo soļu skaitu</b>. Tavs lietotāja konts tiek reģistrēts automātiski, tāpēc vārds atsevišķi nav jāievada. Soļu laukā raksti tikai skaitli — piemēram, <b>65000</b>.
-            </>
-          }
-          visual={<StepThreeVisual />}
-        />
+                <InstructionStep
+                  n="3"
+                  title="Iesniedz kopējo skaitu anketā"
+                  text={
+                    <>
+                      Spied pogu <b>“Iesniegt soļus”</b> un Microsoft Forms anketā ievadi savu <b>nodaļu</b> un <b>nedēļas kopējo soļu skaitu</b>. Tavs lietotāja konts tiek reģistrēts automātiski, tāpēc vārds atsevišķi nav jāievada. Soļu laukā raksti tikai skaitli — piemēram, <b>65000</b>.
+                    </>
+                  }
+                  visual={<StepThreeVisual />}
+                />
 
-        <InstructionStep
-          n="4"
-          title="Seko līdzi progresam un kusties vairāk"
-          text={
-            <>
-              Pirmdienās dati tiek atjaunoti šajā lapā. Katrs iesniegtais rezultāts papildina kopējo 25 miljonu soļu mērķi, individuālo reitingu un nodaļas rezultātu. Jo biežāk kustamies ikdienā, jo ātrāk sasniedzam nākamo pieturpunktu mūsu kopīgajā ceļā.
-            </>
-          }
-          visual={<StepFourVisual />}
-        />
-      </div>
-    </div>
+                <InstructionStep
+                  n="4"
+                  title="Seko līdzi progresam un kusties vairāk"
+                  text={
+                    <>
+                      Pirmdienās dati tiek atjaunoti šajā lapā. Katrs iesniegtais rezultāts papildina kopējo 25 miljonu soļu mērķi, individuālo reitingu un nodaļas rezultātu. Jo biežāk kustamies ikdienā, jo ātrāk sasniedzam nākamo pieturpunktu mūsu kopīgajā ceļā.
+                    </>
+                  }
+                  visual={<StepFourVisual />}
+                />
+              </div>
+            </div>
 
-    <div className="instructionNote">
-      <b>Svarīgi:</b>
-      <span>
-        Katrs solis ir svarīgs. Izaicinājuma mērķis ir gan sasniegt kopīgos pieturpunktus, gan ikdienā kustēties vairāk, justies labāk un stiprināt veselīgākus paradumus.
-      </span>
-    </div>
-  </div>
-</section>
-      
+            <div className="instructionNote">
+              <b>Svarīgi:</b>
+              <span>
+                Katrs solis ir svarīgs. Izaicinājuma mērķis ir gan sasniegt kopīgos pieturpunktus, gan ikdienā kustēties vairāk, justies labāk un stiprināt veselīgākus paradumus.
+              </span>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );
@@ -739,7 +728,7 @@ function ProgressEmbed({ currentSteps, goal, progress, next, stepsUntilNext }) {
         </div>
 
         <div className="embedNext">
-          <span>Nākamais mērķis, ko vēlamies kopā sasniegt </span>
+          <span>Nākamais mērķis, ko vēlamies kopā sasniegt</span>
           <b>
             <CheckpointIcon checkpoint={next} /> {next.title}
           </b>
@@ -835,163 +824,197 @@ function Row({ rank, name, value, small }) {
   );
 }
 
-function Step({ n, title, text }) {
+function InstructionStep({ n, title, text, visual }) {
   return (
-    <div className="stepCard">
-      <b>{n}</b>
-      <h3>{title}</h3>
-      <p>{text}</p>
-    </div>
-  );
-}
-function InstructionStep({ n, title, text, illustration }) {
-  return (
-    <div className="instructionStepCard">
-      <div className="instructionStepTop">
-        <b>{n}</b>
+    <div className="improvedStepCard">
+      <div className="improvedStepHeader">
+        <div className="improvedStepNumber">{n}</div>
         <h3>{title}</h3>
       </div>
 
       <p>{text}</p>
 
-      <div className="instructionIllustration">
-        {illustration}
+      <div className="improvedStepVisual">{visual}</div>
+    </div>
+  );
+}
+
+function StepOneVisual() {
+  return (
+    <div className="instructionImagePanel">
+      <span className="instructionImageLabel">📱 Soļu skats lietotnēs</span>
+
+      <div className="screenshotsGrid">
+        <div className="screenshotCard">
+          <div className="screenshotWrap">
+            <img src="/images/iphone-steps.png" alt="iPhone Health soļu skats" />
+          </div>
+          <span className="deviceBadge">iPhone</span>
+        </div>
+
+        <div className="screenshotCard">
+          <div className="screenshotWrap">
+            <img src="/images/android-steps.png" alt="Android soļu skats" />
+          </div>
+          <span className="deviceBadge">Android</span>
+        </div>
+      </div>
+
+      <div className="pathLine">
+        <span>Health</span>
+        <i>→</i>
+        <span>Browse</span>
+        <i>→</i>
+        <span>Activity</span>
+        <i>→</i>
+        <span>Steps</span>
+      </div>
+
+      <div className="smallInstructionNote">
+        Ja lieto viedpulksteni vai aktivitāšu aproci, soļi parasti automātiski tiek sinhronizēti tajā pašā lietotnē.
       </div>
     </div>
   );
 }
 
-function PhoneStepsIllustration() {
-  return (
-    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
-      <rect x="26" y="18" width="122" height="184" rx="20" fill="#123B63" />
-      <rect x="38" y="36" width="98" height="148" rx="10" fill="#FFFFFF" />
-      <rect x="68" y="28" width="38" height="6" rx="3" fill="#0F2F50" />
-
-      <rect x="52" y="54" width="72" height="24" rx="6" fill="#eef3f9" />
-      <text x="66" y="70" fontSize="10" fill="#123B63" fontWeight="700">Health</text>
-
-      <text x="56" y="102" fontSize="10" fill="#123B63">Browse →</text>
-      <text x="56" y="128" fontSize="10" fill="#123B63">Activity →</text>
-      <text x="56" y="154" fontSize="10" fill="#123B63">Steps</text>
-
-      <rect x="184" y="46" width="140" height="128" rx="14" fill="#f8fbff" stroke="#d8e2ee" />
-      <text x="222" y="70" fontSize="13" fill="#123B63" fontWeight="800">Android</text>
-
-      <circle cx="208" cy="98" r="9" fill="#7bbf6a" />
-      <text x="224" y="102" fontSize="10" fill="#123B63">Samsung Health</text>
-
-      <circle cx="208" cy="124" r="9" fill="#37b4c5" />
-      <text x="224" y="128" fontSize="10" fill="#123B63">Google Fit</text>
-
-      <circle cx="208" cy="150" r="9" fill="#123B63" />
-      <text x="224" y="154" fontSize="10" fill="#123B63">Steps / Soļi</text>
-
-      <path d="M151 110 C165 110 170 110 184 110" fill="none" stroke="#9fb3c8" strokeWidth="2" strokeDasharray="4 4" />
-    </svg>
-  );
-}
-
-function WeekStepsIllustration() {
-  const days = [
-    ["P", 8520, 42],
-    ["O", 9310, 48],
-    ["T", 7650, 38],
-    ["C", 10240, 56],
-    ["Pk", 8980, 45],
-    ["S", 12130, 66],
-    ["Sv", 9170, 47],
-  ];
-
-  return (
-    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
-      <rect x="26" y="28" width="308" height="112" rx="12" fill="#FFFFFF" stroke="#d8e2ee" />
-      <text x="116" y="52" fontSize="13" fill="#123B63" fontWeight="800">Pirmdiena – Svētdiena</text>
-
-      {days.map(([day, steps, height], index) => {
-        const x = 54 + index * 38;
-        return (
-          <g key={day}>
-            <text x={x} y="80" fontSize="11" fill="#123B63" fontWeight="800">{day}</text>
-            <text x={x - 8} y="99" fontSize="8" fill="#64748b">{steps}</text>
-            <rect x={x - 4} y={124 - height} width="16" height={height} rx="4" fill="#cfe0f2" />
-          </g>
-        );
-      })}
-
-      <rect x="54" y="156" width="252" height="46" rx="12" fill="#f8fbff" stroke="#d8e2ee" />
-      <circle cx="86" cy="179" r="17" fill="#123B63" />
-      <text x="115" y="174" fontSize="12" fill="#64748b">Nedēļas kopējais soļu skaits</text>
-      <text x="136" y="195" fontSize="26" fill="#123B63" fontWeight="900">65 000</text>
-    </svg>
-  );
-}
-
-function FormIllustration() {
-  return (
-    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
-      <rect x="76" y="28" width="208" height="170" rx="12" fill="#FFFFFF" stroke="#123B63" strokeWidth="6" />
-      <rect x="134" y="18" width="92" height="30" rx="8" fill="#5d6f82" />
-      <circle cx="180" cy="20" r="8" fill="#f4f7fb" />
-
-      <text x="124" y="70" fontSize="16" fill="#123B63" fontWeight="900">Iesniegt soļus</text>
-
-      <text x="96" y="100" fontSize="10" fill="#123B63" fontWeight="700">Nodaļa</text>
-      <rect x="96" y="106" width="168" height="24" rx="5" fill="#f8fbff" stroke="#d8e2ee" />
-      <text x="106" y="122" fontSize="9" fill="#64748b">Komunikācijas nodaļa</text>
-
-      <text x="96" y="146" fontSize="10" fill="#123B63" fontWeight="700">Soļu skaits nedēļā</text>
-      <rect x="96" y="152" width="168" height="24" rx="5" fill="#f8fbff" stroke="#d8e2ee" />
-      <text x="106" y="168" fontSize="9" fill="#64748b">65000</text>
-
-      <rect x="96" y="184" width="168" height="26" rx="5" fill="#123B63" />
-      <text x="145" y="202" fontSize="11" fill="#FFFFFF" fontWeight="800">Iesniegt</text>
-    </svg>
-  );
-}
-
-function ProgressIllustration() {
-  return (
-    <svg viewBox="0 0 360 220" className="instructionSvg" xmlns="http://www.w3.org/2000/svg" role="img">
-      <rect x="28" y="34" width="160" height="78" rx="10" fill="#FFFFFF" stroke="#d8e2ee" />
-      <text x="44" y="58" fontSize="10" fill="#123B63" fontWeight="900">KOPĪGAIS MĒRĶIS</text>
-      <text x="44" y="82" fontSize="18" fill="#123B63" fontWeight="900">25 000 000</text>
-      <text x="144" y="82" fontSize="10" fill="#123B63">soļu</text>
-
-      <rect x="44" y="94" width="120" height="12" rx="6" fill="#dbe4ef" />
-      <rect x="44" y="94" width="75" height="12" rx="6" fill="#7bbf6a" />
-      <text x="170" y="104" fontSize="10" fill="#123B63">62%</text>
-
-      <path d="M224 62 L245 48 L268 62 L291 54 L316 72 L307 96 L278 94 L257 105 L235 94 Z" fill="none" stroke="#9E3039" strokeWidth="3" />
-      <circle cx="277" cy="76" r="5" fill="#9E3039" />
-
-      <path d="M66 164 C92 138 119 148 144 130 C174 108 210 134 238 112 C262 94 288 106 310 86" fill="none" stroke="#123B63" strokeWidth="3" strokeDasharray="5 5" />
-      <path d="M282 132 L322 92 L312 136" fill="none" stroke="#7bbf6a" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-
-      <circle cx="120" cy="164" r="11" fill="#123B63" />
-      <path d="M120 176 L112 198 M120 176 L132 196 M118 182 L98 176 M122 182 L142 176" stroke="#123B63" strokeWidth="5" strokeLinecap="round" />
-
-      <circle cx="190" cy="156" r="11" fill="#37b4c5" />
-      <path d="M190 168 L182 198 M190 168 L204 194 M187 176 L166 170 M194 176 L215 166" stroke="#37b4c5" strokeWidth="5" strokeLinecap="round" />
-    </svg>
-  );
-}
-function InstructionStep({ n, title, text, visual }) {
-  ...
-}
-
-function StepOneVisual() {
-  ...
-}
-
 function StepTwoVisual() {
-  ...
+  return (
+    <div className="instructionImagePanel">
+      <span className="instructionImageLabel">📊 Nedēļas kopsavilkums</span>
+
+      <div className="weekVisual">
+        <svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nedēļas soļu kopsavilkums">
+          <rect width="360" height="300" fill="#ffffff" />
+          <rect x="18" y="18" width="324" height="264" rx="12" fill="#f8fbff" stroke="#d8e2ee" />
+          <text x="180" y="47" textAnchor="middle" fill="#123B63" fontSize="16" fontWeight="800">
+            Pirmdiena – Svētdiena
+          </text>
+
+          <g transform="translate(38,72)">
+            <line x1="0" y1="118" x2="284" y2="118" stroke="#d8e2ee" />
+            <line x1="0" y1="78" x2="284" y2="78" stroke="#edf2f7" />
+            <line x1="0" y1="38" x2="284" y2="38" stroke="#edf2f7" />
+
+            {[
+              ["P", 75, 43, 0],
+              ["O", 70, 48, 44],
+              ["T", 80, 38, 88],
+              ["C", 58, 60, 132],
+              ["Pk", 72, 46, 176],
+              ["S", 42, 76, 220],
+              ["Sv", 70, 48, 264],
+            ].map(([day, y, h, x]) => (
+              <g key={day} transform={`translate(${x},0)`}>
+                <text x="12" y="142" textAnchor="middle" fill="#123B63" fontSize="12" fontWeight="800">
+                  {day}
+                </text>
+                <rect x="4" y="64" width="16" height="54" fill="#e4edf7" />
+                <rect x="4" y={y} width="16" height={h} fill="#9bbddd" />
+              </g>
+            ))}
+          </g>
+
+          <g transform="translate(36,225)">
+            <rect width="288" height="44" rx="8" fill="#ffffff" stroke="#d8e2ee" />
+            <text x="18" y="19" fill="#64748b" fontSize="12">
+              Nedēļā kopā
+            </text>
+            <text x="18" y="36" fill="#123B63" fontSize="20" fontWeight="900">
+              65 000
+            </text>
+            <text x="144" y="19" fill="#64748b" fontSize="12">
+              Jāiesniedz
+            </text>
+            <text x="144" y="36" fill="#123B63" fontSize="15" fontWeight="800">
+              viens kopējais skaitlis
+            </text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
 }
 
 function StepThreeVisual() {
-  ...
+  return (
+    <div className="instructionImagePanel">
+      <span className="instructionImageLabel">📝 Microsoft Forms anketa</span>
+
+      <div className="formsVisual">
+        <svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Microsoft Forms anketas skats">
+          <rect width="360" height="300" fill="#ffffff" />
+          <rect x="26" y="20" width="308" height="260" rx="12" fill="#f8fbff" stroke="#d8e2ee" />
+          <rect x="26" y="20" width="308" height="46" rx="12" fill="#123B63" />
+          <text x="46" y="50" fill="#ffffff" fontSize="17" fontWeight="900">
+            Iesniegt soļus
+          </text>
+
+          <rect x="48" y="86" width="264" height="48" rx="8" fill="#ffffff" stroke="#d8e2ee" />
+          <text x="62" y="106" fill="#123B63" fontSize="12" fontWeight="800">
+            Nodaļa
+          </text>
+          <text x="62" y="125" fill="#64748b" fontSize="13">
+            Komunikācijas nodaļa
+          </text>
+
+          <rect x="48" y="150" width="264" height="48" rx="8" fill="#ffffff" stroke="#d8e2ee" />
+          <text x="62" y="170" fill="#123B63" fontSize="12" fontWeight="800">
+            Soļu skaits nedēļā
+          </text>
+          <text x="62" y="189" fill="#64748b" fontSize="13">
+            65000
+          </text>
+
+          <rect x="48" y="214" width="116" height="34" rx="6" fill="#123B63" />
+          <text x="106" y="236" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="900">
+            Iesniegt
+          </text>
+
+          <rect x="182" y="214" width="130" height="34" rx="6" fill="#ffffff" stroke="#d8e2ee" />
+          <text x="247" y="236" textAnchor="middle" fill="#123B63" fontSize="12" fontWeight="800">
+            līdz pirmdienai 11.00
+          </text>
+        </svg>
+      </div>
+
+      <div className="smallInstructionNote">
+        Soļu kopskaits jāiesniedz katru pirmdienu līdz plkst. 11.00.
+      </div>
+    </div>
+  );
 }
 
 function StepFourVisual() {
-  ...
+  return (
+    <div className="hikePhoto">
+      <img src="/images/hiking-steps.jpg" alt="Pārgājiena foto" />
+
+      <div className="hikeTop" />
+      <div className="hikeBottom" />
+
+      <div className="hikeCaption">
+        <strong>Kustība turpinās</strong>
+        <span>Katrs iesniegtais rezultāts ir viens posms kopīgajā maršrutā uz nākamo mērķi.</span>
+      </div>
+
+      <svg className="routeOverlay" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M10 56 C55 32 97 47 136 30 C171 14 206 30 246 17 C274 7 295 8 309 13"
+          fill="none"
+          stroke="rgba(255,255,255,.95)"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeDasharray="8 8"
+        />
+        <path
+          d="M297 13 L309 13 L302 25"
+          fill="none"
+          stroke="rgba(182,234,149,.98)"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  );
 }
