@@ -638,48 +638,64 @@ export default function App() {
         </section>
 
       <section className="contentGrid lower instructionsOnly">
-  <div className="card instructionCard illustratedInstructionCard" id="ka-piedalities">
+  <div className="card instructionCard improvedInstructionCard" id="ka-piedalities">
     <h2>Kā piedalīties un iesniegt savus soļus</h2>
 
     <p className="instructionIntro">
-      Šis izaicinājums ir par aktīvāku ikdienu un kopīgu mērķi — sasniegt 25 miljonus soļu Regulatora 25 gadu jubilejā. Mērķis nav tikai nonākt līdz nākamajam pieturpunktam kartē, bet arī ikdienā kustēties vairāk: izvēlēties pastaigu, kāpnes, īsu izkustēšanos pusdienlaikā vai garāku maršrutu mājup.
+      Šis izaicinājums ir par aktīvāku ikdienu un kopīgu mērķi — sasniegt 25 miljonus soļu Regulatora 25 gadu jubilejā.
+      Mērķis nav tikai nonākt līdz nākamajam pieturpunktam kartē, bet arī ikdienā kustēties vairāk:
+      iziet īsā pastaigā, izvēlēties kāpnes lifta vietā vai vienkārši biežāk izkustēties dienas laikā.
     </p>
 
-    <div className="illustratedStepsGrid">
-      <InstructionStep
-        n="1"
-        title="Atver lietotni, kurā redzi savus soļus"
-        text={
-          <>
-            <b>iPhone:</b> Health / Veselība → Browse / Pārlūkot → Activity / Aktivitāte → Steps / Soļi.
-            <br />
-            <br />
-            <b>Android:</b> atver savu aktivitāšu lietotni, piemēram, Samsung Health, Google Fit, Fitbit vai citu soļu lietotni, un atrodi sadaļu Steps / Soļi.
-          </>
-        }
-        illustration={<PhoneStepsIllustration />}
-      />
+    <div className="instructionStepsScroller">
+      <div className="improvedStepsRow">
+        <InstructionStep
+          n="1"
+          title="Atver lietotni, kurā redzi savus soļus"
+          text={
+            <>
+              <b>iPhone:</b> atver <b>Health / Veselība</b> lietotni. Ja soļi nav redzami sākumskatā, atver <b>Browse / Pārlūkot</b>, izvēlies <b>Activity / Aktivitāte</b> un pēc tam <b>Steps / Soļi</b>.
+              <br />
+              <br />
+              <b>Android:</b> atver lietotni, kurā ikdienā skaties aktivitātes, piemēram, <b>Samsung Health</b>, <b>Google Fit</b>, <b>Fitbit</b> vai citu soļu lietotni, un atrodi sadaļu <b>Steps / Soļi</b>.
+            </>
+          }
+          visual={<StepOneVisual />}
+        />
 
-      <InstructionStep
-        n="2"
-        title="Atrodi nedēļas soļu skaitu"
-        text="Apskati soļu skaitu par periodu no pirmdienas līdz svētdienai. Daudzas ierīces un lietotnes nedēļas kopējo soļu skaitu rāda automātiski. Ja redzi tikai dienu rezultātus, saskaiti kopā visu septiņu dienu soļus."
-        illustration={<WeekStepsIllustration />}
-      />
+        <InstructionStep
+          n="2"
+          title="Atrodi nedēļas soļu skaitu"
+          text={
+            <>
+              Apskati soļu skaitu par periodu no <b>pirmdienas līdz svētdienai</b>. Daudzas ierīces un lietotnes nedēļas kopējo soļu skaitu rāda automātiski. Ja redzi katras dienas soļus atsevišķi, saskaiti kopā visu septiņu dienu rezultātus un iegūto kopsummu ievadi anketā.
+            </>
+          }
+          visual={<StepTwoVisual />}
+        />
 
-      <InstructionStep
-        n="3"
-        title="Iesniedz kopējo skaitu anketā"
-        text="Spied pogu “Iesniegt soļus” un Microsoft Forms anketā ievadi savu nodaļu un nedēļas kopējo soļu skaitu. Iesniedzējs tiek reģistrēts automātiski, tāpēc vārds atsevišķi nav jāievada. Soļu laukā raksti tikai skaitli."
-        illustration={<FormIllustration />}
-      />
+        <InstructionStep
+          n="3"
+          title="Iesniedz kopējo skaitu anketā"
+          text={
+            <>
+              Spied pogu <b>“Iesniegt soļus”</b> un Microsoft Forms anketā ievadi savu <b>nodaļu</b> un <b>nedēļas kopējo soļu skaitu</b>. Tavs lietotāja konts tiek reģistrēts automātiski, tāpēc vārds atsevišķi nav jāievada. Soļu laukā raksti tikai skaitli — piemēram, <b>65000</b>.
+            </>
+          }
+          visual={<StepThreeVisual />}
+        />
 
-      <InstructionStep
-        n="4"
-        title="Seko līdzi progresam un kusties vairāk"
-        text="Pirmdienās dati tiek atjaunoti šajā lapā. Katrs iesniegtais rezultāts papildina kopējo 25 miljonu soļu mērķi, individuālo reitingu un nodaļas rezultātu."
-        illustration={<ProgressIllustration />}
-      />
+        <InstructionStep
+          n="4"
+          title="Seko līdzi progresam un kusties vairāk"
+          text={
+            <>
+              Pirmdienās dati tiek atjaunoti šajā lapā. Katrs iesniegtais rezultāts papildina kopējo 25 miljonu soļu mērķi, individuālo reitingu un nodaļas rezultātu. Jo biežāk kustamies ikdienā, jo ātrāk sasniedzam nākamo pieturpunktu mūsu kopīgajā ceļā.
+            </>
+          }
+          visual={<StepFourVisual />}
+        />
+      </div>
     </div>
 
     <div className="instructionNote">
@@ -959,4 +975,23 @@ function ProgressIllustration() {
       <path d="M190 168 L182 198 M190 168 L204 194 M187 176 L166 170 M194 176 L215 166" stroke="#37b4c5" strokeWidth="5" strokeLinecap="round" />
     </svg>
   );
+}
+function InstructionStep({ n, title, text, visual }) {
+  ...
+}
+
+function StepOneVisual() {
+  ...
+}
+
+function StepTwoVisual() {
+  ...
+}
+
+function StepThreeVisual() {
+  ...
+}
+
+function StepFourVisual() {
+  ...
 }
