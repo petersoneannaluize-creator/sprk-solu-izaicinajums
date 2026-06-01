@@ -1099,3 +1099,268 @@ h1 {
     gap: 4px;
   }
 }
+/* --- Uzlabotā instrukciju sadaļa --- */
+
+.improvedInstructionCard {
+  overflow: hidden;
+}
+
+.instructionIntro {
+  max-width: 1250px;
+  margin: -8px 0 22px;
+  color: #53606f;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.instructionStepsScroller {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.improvedStepsRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(320px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+  min-width: 1420px;
+}
+
+.improvedStepCard {
+  min-height: 585px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  padding: 18px;
+}
+
+.improvedStepHeader {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.improvedStepNumber {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.improvedStepCard h3 {
+  margin: 0;
+  color: var(--blue);
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.improvedStepCard p {
+  margin: 0;
+  color: #53606f;
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+.improvedStepCard p b {
+  color: var(--blue);
+}
+
+.improvedStepVisual {
+  margin-top: auto;
+}
+
+.instructionImagePanel {
+  border: 1px solid var(--border);
+  background: #f8fbff;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.instructionImageLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--blue);
+  font-size: 11.5px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.screenshotsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.screenshotCard {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  padding: 8px;
+}
+
+.screenshotWrap {
+  height: 205px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
+  border: 1px solid #e8eef6;
+}
+
+.screenshotWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+}
+
+.deviceBadge {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  background: #f8fbff;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.pathLine {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.pathLine span {
+  padding: 5px 7px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  font-size: 10.5px;
+  color: #53606f;
+  line-height: 1;
+}
+
+.pathLine i {
+  font-style: normal;
+  color: #9fb2c6;
+  font-weight: 900;
+}
+
+.smallInstructionNote {
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+.weekVisual,
+.formsVisual {
+  height: 300px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.weekVisual svg,
+.formsVisual svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hikePhoto {
+  position: relative;
+  height: 300px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hikePhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hikeTop {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 130px;
+  background: linear-gradient(180deg, rgba(7,24,40,.70), rgba(7,24,40,.22), transparent);
+}
+
+.hikeBottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 75px;
+  background: linear-gradient(180deg, transparent, rgba(7,24,40,.50));
+}
+
+.hikeCaption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 14px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.hikeCaption strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.hikeCaption span {
+  display: block;
+  max-width: 86%;
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(255,255,255,.94);
+}
+
+.routeOverlay {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 10px;
+  height: 70px;
+  pointer-events: none;
+}
+
+.instructionNote {
+  margin-top: 22px;
+  background: var(--light);
+  border: 1px solid rgba(18,59,99,.15);
+  padding: 18px 20px;
+  color: #53606f;
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.instructionNote b {
+  color: var(--blue);
+  white-space: nowrap;
+}
+
+.instructionNote span {
+  display: block;
+}
