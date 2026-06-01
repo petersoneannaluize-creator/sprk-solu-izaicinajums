@@ -422,7 +422,7 @@ export default function App() {
             <div className="progressHeader">
               <div>
                 <h2>👣 Šobrīd esam nogājuši {format(currentSteps)} soļu</h2>
-                <p>No kopējā mērķa — {format(GOAL)} soļiem</p>
+                <p>No kopējā mērķa – {format(GOAL)} soļiem</p>
               </div>
 
               <div className="progressBadge">{progress}%</div>
