@@ -931,7 +931,7 @@ function StepTwoVisual() {
               Jāiesniedz
             </text>
             <text x="144" y="36" fill="#123B63" fontSize="15" fontWeight="800">
-              viens kopējais skaitlis
+              7 dienu kopsumma
             </text>
           </g>
         </svg>
